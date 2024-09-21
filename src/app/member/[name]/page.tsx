@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import About from 'src/components/About';
 import Banner from 'src/components/Banner';
 import Navbar from 'src/components/NavBar';
 import SocialIcons from 'src/components/SocialIcons';
@@ -61,6 +62,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
         <Banner />
         <SocialIcons />
         <VerticalGmail />
+        <About />
       </main>
     </>
   );

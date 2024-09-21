@@ -300,3 +300,147 @@ pre {
     }
   }
 }
+
+.about {
+  @apply mx-auto max-w-[900px] py-24;
+
+  .inner {
+    @apply grid items-start gap-12 md:grid-cols-[3fr,2fr];
+  }
+
+  .about-content {
+    p {
+      @apply mb-4;
+    }
+
+    .highlight {
+      @apply text-secondary-dark;
+    }
+  }
+
+  .numbered-heading {
+    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
+
+    &::before {
+      @apply mr-2 text-secondary-dark;
+      counter-increment: section 1;
+      content: '0' counter(section) '.';
+    }
+
+    &::after {
+      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
+      content: '';
+    }
+  }
+
+  .skills-list {
+    @apply mt-5 grid grid-cols-[repeat(2,minmax(140px,200px))] gap-x-2 gap-y-1 overflow-hidden;
+
+    li {
+      @apply relative pl-5 text-slate;
+
+      &::before {
+        @apply absolute left-0 text-secondary-dark;
+        content: '▹';
+      }
+    }
+  }
+
+  .about-image {
+    @apply relative max-w-[300px];
+
+    .wrapper {
+      @apply relative block;
+
+      &::before {
+        @apply absolute -right-5 -top-5 z-[-1] block h-full w-full border-2 border-secondary-dark;
+        content: '';
+      }
+
+      &::after {
+        @apply absolute -bottom-5 -left-5 z-[-1] block h-full w-full bg-secondary-dark;
+        content: '';
+      }
+
+      &:hover::before {
+        @apply -right-4 -top-4;
+      }
+
+      &:hover::after {
+        @apply -bottom-4 -left-4;
+      }
+    }
+
+    img {
+      @apply rounded;
+      filter: grayscale(50%) brightness(70%);
+      transition: filter 0.3s ease;
+    }
+
+    &:hover img {
+      filter: none;
+    }
+  }
+}
+
+/* Animation */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.waving-hand {
+  display: inline-block;
+  animation: wave 2.5s infinite;
+  transform-origin: 70% 70%;
+}
+
+.animate-up,
+.animate-right {
+  opacity: 0;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.animate-up {
+  transform: translateY(20px);
+}
+
+.animate-right {
+  transform: translateX(20px);
+}
+
+.animate-up.is-visible,
+.animate-right.is-visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Thêm transition cho việc reset animation */
+.animate-up:not(.is-visible),
+.animate-right:not(.is-visible) {
+  transition: none;
+}

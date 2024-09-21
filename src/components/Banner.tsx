@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <section className="banner">
       <span className="banner_greeting">Hi, my name is</span>
-      <h2 className="banner_name">Vinh Nguyen 👋</h2>
+      <h2 className="banner_name">Vinh Nguyen <span className="waving-hand">👋</span></h2>
       <h3 className="banner_sologan">I build things for the Web.</h3>
       <p className="banner_short-intro">
         I'm a full stack developer (React.js & Node.js) with a focus on creating
