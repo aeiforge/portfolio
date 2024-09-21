@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="header">
+    <>
       <nav className="navbar">
         <section className="navbar_logo">
           <h1>Aeiforg</h1>
@@ -58,7 +58,7 @@ const Navbar = () => {
         </section>
       </nav>
       {isMenuOpen && (
-        <>
+        <section className="navbar_shade">
           <section className="navbar_menu">
             <ul>
               <li>
@@ -84,9 +84,9 @@ const Navbar = () => {
           <section className="navbar_resume">
             <button>Download CV</button>
           </section>
-        </>
+        </section>
       )}
-    </header>
+    </>
   );
 };
 

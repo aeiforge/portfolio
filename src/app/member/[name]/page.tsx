@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Banner from 'src/components/Banner';
 import Navbar from 'src/components/NavBar';
+import SocialIcons from 'src/components/SocialIcons';
+import VerticalGmail from 'src/components/VerticalGmail';
 
 interface Member {
   fullName: string;
@@ -52,7 +54,14 @@ export default function MemberPage({ params }: { params: { name: string } }) {
 
   return (
     <>
-      <Navbar />
+      <header className="header">
+        <Navbar />
+      </header>
+      <main className="main">
+        <Banner />
+        <SocialIcons />
+        <VerticalGmail />
+      </main>
     </>
   );
 }

@@ -19,6 +19,37 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Calibre';
+  src: url('/fonts/calibre/Calibre-Semibold.eot');
+  src:
+    local('Calibre Semibold'),
+    local('Calibre-Semibold'),
+    url('/fonts/calibre/Calibre-Semibold.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/calibre/Calibre-Semibold.woff2') format('woff2'),
+    url('/fonts/calibre/Calibre-Semibold.woff') format('woff'),
+    url('/fonts/calibre/Calibre-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Calibre';
+  src: url('/fonts/calibre/Calibre-Regular.eot');
+  src:
+    local('Calibre'),
+    local('Calibre-Regular'),
+    url('/fonts/calibre/Calibre-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/calibre/Calibre-Regular.woff2') format('woff2'),
+    url('/fonts/calibre/Calibre-Regular.woff') format('woff'),
+    url('/fonts/calibre/Calibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 //Global styles
 html {
   -webkit-text-size-adjust: 100%;
@@ -96,10 +127,16 @@ pre {
   --primary-dark: #1b283b;
   --secondary-dark: #7e98c4;
   --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --lightest-slate: #ccd6f6;
+  --slate: #8892b0;
 }
 
 .header {
-  @apply bg-primary-dark px-12 py-4;
+  @apply fixed left-0 right-0 top-0 z-10 bg-primary-dark px-6 py-4 md:px-12;
+}
+
+.main {
+  @apply min-h-screen w-full bg-primary-dark px-6 md:px-24;
 }
 
 .navbar {
@@ -107,6 +144,11 @@ pre {
 
   &_logo {
     @apply mr-auto;
+  }
+
+  &_shade {
+    @apply flex h-screen min-h-screen w-screen flex-col items-center md:hidden;
+    margin-left: -1.5rem;
   }
 
   &_menu {
@@ -120,7 +162,7 @@ pre {
   }
 
   &_resume {
-    @apply mt-4 block md:hidden;
+    @apply mt-4 block w-full px-6 md:hidden;
 
     button {
       @apply w-full rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
@@ -128,17 +170,35 @@ pre {
   }
 
   &_menu-desktop {
-    @apply hidden md:flex md:items-center md:gap-4;
+    @apply hidden md:flex md:items-center md:gap-8;
 
     ul {
       li {
-        @apply hover:text-secondary-dark;
+        @apply transition-all duration-300;
+
+        a {
+          @apply relative inline-block;
+
+          &::after {
+            content: '';
+            @apply absolute bottom-0 left-0 h-[2px] w-0 bg-secondary-dark transition-all duration-300;
+          }
+
+          &:hover {
+            @apply text-secondary-dark;
+            transform: translateY(-2px);
+
+            &::after {
+              @apply w-full;
+            }
+          }
+        }
       }
     }
   }
 
   &_resume-desktop {
-    @apply ml-4 hidden md:block;
+    @apply ml-8 hidden md:block;
 
     button {
       @apply rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
@@ -152,6 +212,91 @@ pre {
       svg {
         @apply text-white;
       }
+    }
+  }
+}
+
+.banner {
+  @apply flex h-screen min-h-screen flex-col justify-center bg-primary-dark text-white md:mx-auto md:max-w-[1000px];
+
+  &_greeting {
+    @apply mb-8 text-secondary-dark;
+    line-height: 1.1;
+  }
+
+  &_name {
+    @apply font-calibre text-[clamp(40px,8vw,80px)] font-semibold text-lightest-slate;
+    line-height: 1.1;
+  }
+
+  &_sologan {
+    @apply mt-2 font-calibre text-[clamp(40px,8vw,80px)] font-semibold text-slate;
+    line-height: 0.9;
+  }
+
+  &_short-intro {
+    @apply my-12 max-w-[540px] font-calibre font-normal text-slate;
+  }
+
+  &_info {
+    @apply flex flex-col gap-4 md:flex-row md:gap-8;
+  }
+
+  &_location {
+    @apply m-0 flex items-center font-normal;
+    line-height: 1.1;
+
+    &-icon {
+      @apply mr-2 h-3 w-3;
+    }
+  }
+
+  &_status {
+    @apply m-0 flex items-center font-normal;
+    line-height: 1.1;
+
+    &-icon {
+      @apply mr-2 flex h-3 w-3 items-center justify-center;
+      &-dot {
+        @apply h-2 w-2 rounded-full bg-green-500;
+      }
+    }
+  }
+}
+
+.social-icons {
+  @apply fixed bottom-0 left-12 z-10 hidden md:flex md:flex-col md:items-center;
+
+  .social-icon {
+    filter: invert(70%) sepia(19%) saturate(206%) hue-rotate(176deg)
+      brightness(90%) contrast(84%);
+
+    &_wrapper {
+      @apply mb-6 transition-all duration-300;
+
+      &:hover {
+        transform: translateY(-4px);
+      }
+
+      &:hover .social-icon {
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+          brightness(100%) contrast(100%);
+      }
+    }
+  }
+}
+
+.vertical-gmail {
+  @apply fixed bottom-0 right-12 z-10 hidden md:flex md:items-center;
+  writing-mode: vertical-rl;
+
+  &_link {
+    @apply mb-6 text-[14px] text-slate transition-all duration-300;
+    letter-spacing: 0.1em;
+
+    &:hover {
+      @apply text-secondary-dark;
+      transform: translateY(-5px);
     }
   }
 }

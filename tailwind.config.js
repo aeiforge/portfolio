@@ -15,6 +15,11 @@ module.exports = {
       colors: {
         'primary-dark': 'var(--primary-dark)',
         'secondary-dark': 'var(--secondary-dark)',
+        'lightest-slate': 'var(--lightest-slate)',
+        slate: 'var(--slate)',
+      },
+      fontFamily: {
+        calibre: ['Calibre', 'sans-serif'],
       },
     },
   },
