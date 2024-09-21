@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+//Fonts
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/sf-mono/SFMonoBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/sf-mono/SFMonoRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+//Global styles
+html {
+  -webkit-text-size-adjust: 100%;
+  font-family: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  line-height: 1.5;
+  tab-size: 4;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+h1,
+h2,
+p,
+pre {
+  margin: 0;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+h1,
+h2 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+pre {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
+}
+svg {
+  display: block;
+  vertical-align: middle;
+  shape-rendering: auto;
+  text-rendering: optimizeLegibility;
+}
+pre {
+  background-color: rgba(55, 65, 81, 1);
+  border-radius: 0.25rem;
+  color: rgba(229, 231, 235, 1);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
+  overflow: scroll;
+  padding: 0.5rem 0.75rem;
+}
+
+:root {
+  --primary-dark: #1b283b;
+  --secondary-dark: #7e98c4;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.header {
+  @apply bg-primary-dark px-12 py-4;
+}
+
+.navbar {
+  @apply flex items-center bg-primary-dark text-white;
+
+  &_logo {
+    @apply mr-auto;
+  }
+
+  &_menu {
+    @apply flex flex-col items-center gap-4 text-white md:hidden;
+
+    ul {
+      li {
+        @apply hover:text-secondary-dark;
+      }
+    }
+  }
+
+  &_resume {
+    @apply mt-4 block md:hidden;
+
+    button {
+      @apply w-full rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
+    }
+  }
+
+  &_menu-desktop {
+    @apply hidden md:flex md:items-center md:gap-4;
+
+    ul {
+      li {
+        @apply hover:text-secondary-dark;
+      }
+    }
+  }
+
+  &_resume-desktop {
+    @apply ml-4 hidden md:block;
+
+    button {
+      @apply rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
+    }
+  }
+
+  &_hamburger {
+    @apply flex items-center md:hidden;
+
+    button {
+      svg {
+        @apply text-white;
+      }
+    }
+  }
+}
