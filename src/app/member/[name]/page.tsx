@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import About from 'src/components/About';
 import Banner from 'src/components/Banner';
 import Navbar from 'src/components/NavBar';
+import Skill from 'src/components/Skill';
 import SocialIcons from 'src/components/SocialIcons';
 import VerticalGmail from 'src/components/VerticalGmail';
 
@@ -134,6 +135,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
         <SocialIcons socials={socialIcons} />
         <VerticalGmail email={member.contact.email.name} />
         <About />
+        <Skill />
       </main>
     </>
   );

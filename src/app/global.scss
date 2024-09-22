@@ -435,7 +435,9 @@ pre {
 
 /* Start About */
 .about {
-  @apply mx-auto max-w-[1000px] py-24 text-slate;
+  @apply mx-auto max-w-[1000px] text-slate;
+
+  min-height: 100dvh;
 
   &_inner {
     @apply grid items-center gap-12;
