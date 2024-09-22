@@ -7,22 +7,22 @@ import Image from 'next/image';
 interface Skill {
   name: string;
   icon: string;
-  level: number;
+  frequency: number;
 }
 
 const skills: Skill[] = [
-  { name: 'Go', icon: '/icons/go.svg', level: 2 },
-  { name: 'Angular', icon: '/icons/angular.svg', level: 2 },
-  { name: 'React', icon: '/icons/react.svg', level: 5 },
-  { name: 'TypeScript', icon: '/icons/typescript.svg', level: 5 },
-  { name: 'NextJS', icon: '/icons/nestjs.svg', level: 4 },
-  { name: 'GraphQL', icon: '/icons/graphql.svg', level: 3 },
-  { name: 'Javascript', icon: '/icons/javascript.svg', level: 5 },
-  { name: 'RabbitMQ', icon: '/icons/rabbitmq.svg', level: 3 },
-  { name: 'MongoDB', icon: '/icons/mongodb.svg', level: 4 },
-  { name: 'Node.js', icon: '/icons/nodejs.svg', level: 5 },
-  { name: 'Tailwind', icon: '/icons/tailwindcss.svg', level: 1 },
-  { name: 'Docker', icon: '/icons/docker.svg', level: 3 },
+  { name: 'Go', icon: '/icons/go.svg', frequency: 2 },
+  { name: 'Angular', icon: '/icons/angular.svg', frequency: 2 },
+  { name: 'React', icon: '/icons/react.svg', frequency: 5 },
+  { name: 'TypeScript', icon: '/icons/typescript.svg', frequency: 5 },
+  { name: 'NextJS', icon: '/icons/nestjs.svg', frequency: 4 },
+  { name: 'GraphQL', icon: '/icons/graphql.svg', frequency: 3 },
+  { name: 'Javascript', icon: '/icons/javascript.svg', frequency: 5 },
+  { name: 'RabbitMQ', icon: '/icons/rabbitmq.svg', frequency: 3 },
+  { name: 'MongoDB', icon: '/icons/mongodb.svg', frequency: 4 },
+  { name: 'Node.js', icon: '/icons/nodejs.svg', frequency: 5 },
+  { name: 'Tailwind', icon: '/icons/tailwindcss.svg', frequency: 1 },
+  { name: 'Docker', icon: '/icons/docker.svg', frequency: 3 },
 ];
 
 const otherTechnologies = [
@@ -128,15 +128,20 @@ const Skill = () => {
     }
   };
 
-  const getLevelText = (level: number) => {
-    switch(level) {
-      case 1: return 'Beginner';
-      case 2: return 'Elementary';
-      case 3: return 'Intermediate';
-      case 4: return 'Advanced';
-      case 5: return 'Expert';
+  const getFrequencyText = (frequency: number) => {
+    switch(frequency) {
+      case 1: return 'Rarely';
+      case 2: return 'Occasionally';
+      case 3: return 'Sometimes';
+      case 4: return 'Often';
+      case 5: return 'Very Often';
       default: return 'Unknown';
     }
+  };
+
+  const getFrequencyPercentage = (frequency: number) => {
+    const maxFrequency = 5;
+    return (frequency / maxFrequency) * 100;
   };
 
   return (
@@ -170,19 +175,20 @@ const Skill = () => {
               <div className="flex mb-2 items-center justify-between">
                 <div>
                   <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-secondary-dark bg-primary-dark border border-secondary-dark">
-                    {getLevelText(skill.level)}
+                    {getFrequencyText(skill.frequency)}
                   </span>
                 </div>
                 <div className="text-right">
                   <span className="text-xs font-semibold inline-block text-secondary-dark">
-                    {skill.level * 20}%
+                    {getFrequencyPercentage(skill.frequency).toFixed(0)}%
                   </span>
                 </div>
               </div>
               <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-primary-dark border border-secondary-dark">
                 <motion.div
-                  variants={barVariants}
-                  style={{ width: `${skill.level * 20}%` }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${getFrequencyPercentage(skill.frequency)}%` }}
+                  transition={{ duration: 1.2 }}
                   className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-secondary-dark"
                 ></motion.div>
               </div>
