@@ -5,6 +5,7 @@ import Navbar from 'src/components/NavBar';
 import SocialIcons from 'src/components/SocialIcons';
 import Stack from 'src/components/Stack';
 import VerticalGmail from 'src/components/VerticalGmail';
+import WorkExperience from 'src/components/WorkExperience';
 
 interface SocialContact {
   name: string;
@@ -130,6 +131,69 @@ const members: Record<string, Member> = {
   },
 };
 
+const jobs = [
+  {
+    companyLogo: '/images/upwork-logo.png',
+    companyName: 'Upwork',
+    position: 'Senior Software Engineering',
+    duration: '8/2022 - Present',
+    description: [
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+    ],
+    link: '#',
+  },
+  {
+    companyLogo: '/images/upwork-logo.png',
+    companyName: 'Upwork',
+    position: 'Senior Software Engineering',
+    duration: '8/2022 - Present',
+    description: [
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+    ],
+    link: '#',
+  },
+  {
+    companyLogo: '/images/upwork-logo.png',
+    companyName: 'Upwork',
+    position: 'Senior Software Engineering',
+    duration: '8/2022 - Present',
+    description: [
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+    ],
+    link: '#',
+  },
+  {
+    companyLogo: '/images/upwork-logo.png',
+    companyName: 'Upwork',
+    position: 'Senior Software Engineering',
+    duration: '8/2022 - Present',
+    description: [
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+    ],
+    link: '#',
+  },
+  {
+    companyLogo: '/images/upwork-logo.png',
+    companyName: 'Upwork',
+    position: 'Senior Software Engineering',
+    duration: '8/2022 - Present',
+    description: [
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+    ],
+    link: '#',
+  },
+];
+
 export default function MemberPage({ params }: { params: { name: string } }) {
   const memberName = params.name.toLowerCase();
   const member = members[memberName as keyof typeof members];
@@ -177,6 +241,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
           stacks={member.techstack.mainStackList}
           otherStacks={member.techstack.otherStackList}
         />
+        <WorkExperience jobs={jobs} />
       </main>
     </>
   );
