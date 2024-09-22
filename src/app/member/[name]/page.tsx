@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import About from 'src/components/About';
 import Banner from 'src/components/Banner';
 import Navbar from 'src/components/NavBar';
-import Skill from 'src/components/Skill';
 import SocialIcons from 'src/components/SocialIcons';
+import Stack from 'src/components/Stack';
 import VerticalGmail from 'src/components/VerticalGmail';
 
 interface SocialContact {
@@ -11,6 +11,12 @@ interface SocialContact {
   url: string;
   icon: string;
   hide: boolean;
+}
+
+interface MainStack {
+  name: string;
+  icon: string;
+  frequency: number;
 }
 
 interface Member {
@@ -32,9 +38,8 @@ interface Member {
     status: string;
   };
   techstack: {
-    tools: string[];
-    languages: string[];
-    frameworks: string[];
+    mainStackList: MainStack[];
+    otherStackList: string[];
   };
 }
 
@@ -93,9 +98,34 @@ const members: Record<string, Member> = {
       status: 'Available for new projects',
     },
     techstack: {
-      tools: ['Git', 'Figma', 'VSCode'],
-      languages: ['JavaScript', 'TypeScript'],
-      frameworks: ['React', 'Next.js', 'Node.js', 'Nest.js'],
+      mainStackList: [
+        { name: 'Go', icon: '/icons/go.svg', frequency: 2 },
+        { name: 'Angular', icon: '/icons/angular.svg', frequency: 2 },
+        { name: 'React', icon: '/icons/react.svg', frequency: 5 },
+        { name: 'TypeScript', icon: '/icons/typescript.svg', frequency: 5 },
+        { name: 'NextJS', icon: '/icons/nestjs.svg', frequency: 4 },
+        { name: 'GraphQL', icon: '/icons/graphql.svg', frequency: 3 },
+        { name: 'Javascript', icon: '/icons/javascript.svg', frequency: 5 },
+        { name: 'RabbitMQ', icon: '/icons/rabbitmq.svg', frequency: 3 },
+        { name: 'MongoDB', icon: '/icons/mongodb.svg', frequency: 4 },
+        { name: 'Node.js', icon: '/icons/nodejs.svg', frequency: 5 },
+        { name: 'Tailwind', icon: '/icons/tailwindcss.svg', frequency: 1 },
+        { name: 'Docker', icon: '/icons/docker.svg', frequency: 3 },
+      ],
+      otherStackList: [
+        'Gatsby',
+        'Ethereum',
+        'Zod',
+        'Mocha',
+        'Redux',
+        'PostgreSQL',
+        'AWS',
+        'Vercel',
+        'Netlify',
+        'MongoDB',
+        'Kotlin',
+        'Swift',
+      ],
     },
   },
 };
@@ -108,16 +138,24 @@ export default function MemberPage({ params }: { params: { name: string } }) {
     return notFound();
   }
 
-  const socialIcons = Object.entries(member.contact).reduce((acc, [key, value]) => {
-    if (typeof value === 'object' && 'url' in value && !value.hide && key !== 'email') {
-      acc.push({
-        name: key,
-        url: (value as SocialContact).url,
-        icon: (value as SocialContact).icon,
-      });
-    }
-    return acc;
-  }, [] as Array<{ name: string; url: string; icon: string }>);
+  const socialIcons = Object.entries(member.contact).reduce(
+    (acc, [key, value]) => {
+      if (
+        typeof value === 'object' &&
+        'url' in value &&
+        !value.hide &&
+        key !== 'email'
+      ) {
+        acc.push({
+          name: key,
+          url: (value as SocialContact).url,
+          icon: (value as SocialContact).icon,
+        });
+      }
+      return acc;
+    },
+    [] as Array<{ name: string; url: string; icon: string }>
+  );
 
   return (
     <>
@@ -135,7 +173,10 @@ export default function MemberPage({ params }: { params: { name: string } }) {
         <SocialIcons socials={socialIcons} />
         <VerticalGmail email={member.contact.email.name} />
         <About />
-        <Skill />
+        <Stack
+          stacks={member.techstack.mainStackList}
+          otherStacks={member.techstack.otherStackList}
+        />
       </main>
     </>
   );
