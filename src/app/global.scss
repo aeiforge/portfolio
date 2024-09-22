@@ -437,8 +437,6 @@ pre {
 .about {
   @apply mx-auto max-w-[1000px] text-slate;
 
-  min-height: 100dvh;
-
   &_inner {
     @apply grid items-center gap-12;
 
@@ -531,14 +529,27 @@ pre {
       filter: none;
     }
   }
+
+  .show-more-btn {
+    background: none;
+    border: none;
+    color: #64ffda;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    text-decoration: underline;
+  }
+
+  .show-more-btn:hover {
+    color: #45e0bc;
+  }
 }
 /* End About */
 
 /* Start Skills */
 .skills {
   @apply mx-auto max-w-[1000px] py-14 md:py-0;
-
-  min-height: 100dvh;
 
   .numbered-heading {
     @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;

@@ -24,7 +24,8 @@ interface Member {
   fullName: string;
   role: string;
   slogan: string;
-  description: string;
+  description: string[];
+  shortIntro: string;
   image: string;
   contact: {
     phone: string;
@@ -41,6 +42,7 @@ interface Member {
   techstack: {
     mainStackList: MainStack[];
     otherStackList: string[];
+    intro: string[];
   };
 }
 
@@ -49,7 +51,12 @@ const members: Record<string, Member> = {
     fullName: 'Vinh Dang',
     role: 'FULLSTACK JAVASCRIPT/TYPESCRIPT',
     slogan: 'I build things for the web',
-    description: 'Lorem ipsum dolor sit amet consectetur...',
+    description: [
+      "Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!",
+      "Fast-forward to today, and I've had the privilege of working at {highlight}an advertising agency{/highlight}, {highlight}a start-up{/highlight}, {highlight}a huge corporation{/highlight}, and {highlight}a student-led design studio{/highlight}. My main focus these days is building accessible, inclusive products and digital experiences at {highlight}Upstatement{/highlight} for a variety of clients.",
+      "I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React."
+    ],
+    shortIntro: "",
     image: '/images/vinhdang.jpg',
     contact: {
       phone: '+84 902 818 547',
@@ -126,6 +133,14 @@ const members: Record<string, Member> = {
         'MongoDB',
         'Kotlin',
         'Swift',
+      ],
+      intro: [
+        'Javascript',
+        'Typescript',
+        'React',
+        'NextJS',
+        'NodeJS',
+        'Go',
       ],
     },
   },
@@ -230,13 +245,18 @@ export default function MemberPage({ params }: { params: { name: string } }) {
         <Banner
           name={member.fullName}
           slogan={member.slogan}
-          shortIntro={member.description}
+          shortIntro={member.shortIntro}
           location={member.contact.location}
           status={member.contact.status}
         />
         <SocialIcons socials={socialIcons} />
         <VerticalGmail email={member.contact.email.name} />
-        <About />
+        <About
+          fullName={member.fullName}
+          description={member.description}
+          image={member.image}
+          technologies={member.techstack.intro}
+        />
         <Stack
           stacks={member.techstack.mainStackList}
           otherStacks={member.techstack.otherStackList}
