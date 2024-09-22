@@ -208,9 +208,14 @@ pre {
 /* Start Header */
 .header {
   @apply fixed left-0 right-0 top-0 z-10 bg-primary-dark px-6 py-4;
+  transition: transform 0.3s ease-in-out;
 
   @screen md {
     @apply px-12;
+  }
+
+  &--hidden {
+    transform: translateY(-100%);
   }
 }
 /* End Header */

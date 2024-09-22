@@ -1,3 +1,5 @@
+'use client';
+
 import { notFound } from 'next/navigation';
 import About from 'src/components/About';
 import Banner from 'src/components/Banner';
@@ -7,6 +9,7 @@ import SocialIcons from 'src/components/SocialIcons';
 import Stack from 'src/components/Stack';
 import VerticalGmail from 'src/components/VerticalGmail';
 import WorkExperience from 'src/components/WorkExperience';
+import { useState, useEffect } from 'react';
 
 interface SocialContact {
   name: string;
@@ -57,7 +60,7 @@ const members: Record<string, Member> = {
       "Fast-forward to today, and I've had the privilege of working at {highlight}an advertising agency{/highlight}, {highlight}a start-up{/highlight}, {highlight}a huge corporation{/highlight}, and {highlight}a student-led design studio{/highlight}. My main focus these days is building accessible, inclusive products and digital experiences at {highlight}Upstatement{/highlight} for a variety of clients.",
       "I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React."
     ],
-    shortIntro: "",
+    shortIntro: "I'm a fullstack developer with a passion for building web applications.",
     image: '/images/vinhdang.jpg',
     contact: {
       phone: '+84 902 818 547',
@@ -237,9 +240,44 @@ export default function MemberPage({ params }: { params: { name: string } }) {
     [] as Array<{ name: string; url: string; icon: string }>
   );
 
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY === 0) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.scrollY === 0 || e.clientY <= 50) {
+        setIsHeaderVisible(true);
+      } else {
+        setIsHeaderVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
-      <header className="header">
+      <header className={`header ${isHeaderVisible ? '' : 'header--hidden'}`}>
         <Navbar />
       </header>
       <main className="main">
