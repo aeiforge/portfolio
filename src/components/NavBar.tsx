@@ -10,7 +10,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <section className="navbar_logo">
-          <h1>Aeiforg</h1>
+          <h1>Aeiforge</h1>
         </section>
         <section className="navbar_menu-desktop">
           <ul>
