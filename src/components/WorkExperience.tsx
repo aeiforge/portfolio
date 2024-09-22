@@ -56,6 +56,7 @@ const WorkExperienceItem: React.FC<{ job: Job; index: number }> = ({ job, index 
 
   return (
     <motion.section 
+      id="experience"
       ref={itemRef}
       className="work-experience_item"
       initial="hidden"
