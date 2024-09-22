@@ -1,8 +1,12 @@
-const VerticalGmail = () => {
+interface VerticalGmailProps {
+  email: string;
+}
+
+const VerticalGmail = ({ email }: VerticalGmailProps) => {
   return (
     <section className="vertical-gmail">
-      <a href="mailto:brittany.chiang@gmail.com" className="vertical-gmail_link">
-        dev.minhvo@gmail.com
+      <a href={`mailto:${email}`} className="vertical-gmail_link">
+        {email}
       </a>
       <div className="w-px h-24 bg-slate"></div>
     </section>
