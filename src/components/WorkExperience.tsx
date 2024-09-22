@@ -55,28 +55,34 @@ const WorkExperienceItem: React.FC<{ job: Job; index: number }> = ({ job, index 
   };
 
   return (
-    <motion.div 
+    <motion.section 
       ref={itemRef}
-      className="work-experience__item"
+      className="work-experience_item"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={itemVariants}
     >
-      <div className="work-experience__left">
-        <Image src={job.companyLogo} alt={job.companyName} width={100} height={30} className="work-experience__logo" />
-        <h3 className="work-experience__company">{job.companyName}</h3>
-        <p className="work-experience__duration">{job.duration}</p>
-      </div>
-      <div className="work-experience__right">
-        <h4 className="work-experience__position">{job.position}</h4>
-        <ul className="work-experience__description">
-          {job.description.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
-        </ul>
-        <a href={job.link} className="work-experience__link">Link here</a>
-      </div>
-    </motion.div>
+      <section className="work-experience_content">
+        <section className="work-experience_left work-experience_no_logo">
+          <h3 className="work-experience_company">{job.companyName}</h3>
+          <p className="work-experience_duration">{job.duration}</p>
+        </section>
+        <section className="work-experience_left work-experience_logo">
+          <Image src={job.companyLogo} alt={job.companyName} width={100} height={30} className="work-experience_logo" />
+          <h3 className="work-experience_company">{job.companyName}</h3>
+          <p className="work-experience_duration">{job.duration}</p>
+        </section>
+        <section className="work-experience_right">
+          <h4 className="work-experience_position">{job.position}</h4>
+          <ul className="work-experience_description">
+            {job.description.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+          <a href={job.link} className="work-experience_link">Link here</a>
+        </section>
+      </section>
+    </motion.section>
   );
 };
 
