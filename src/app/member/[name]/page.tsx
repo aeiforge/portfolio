@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import About from 'src/components/About';
 import Banner from 'src/components/Banner';
+import Footer from 'src/components/Footer';
 import Navbar from 'src/components/NavBar';
 import SocialIcons from 'src/components/SocialIcons';
 import Stack from 'src/components/Stack';
@@ -262,6 +263,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
           otherStacks={member.techstack.otherStackList}
         />
         <WorkExperience jobs={jobs} />
+        <Footer />
       </main>
     </>
   );

@@ -717,3 +717,38 @@ pre {
     }
   }
 }
+/* End Work Experience */
+
+/* Start Footer */
+.footer {
+  @apply mx-auto max-w-[1000px] border-t border-secondary-dark bg-primary-dark py-8 text-center text-lightest-slate;
+
+  &__container {
+    @apply container mx-auto px-4;
+  }
+
+  &__tech-stack {
+    @apply mb-4;
+  }
+
+  &__github-link {
+    @apply mb-4 inline-flex items-center hover:text-gray-300;
+  }
+
+  &__github-icon {
+    @apply ml-2 text-white;
+  }
+
+  &__copyright {
+    @apply mb-4 text-lg;
+  }
+
+  &__language {
+    @apply flex items-center justify-center text-lg;
+  }
+
+  &__flag {
+    @apply mx-2;
+  }
+}
+/* End Footer */
