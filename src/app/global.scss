@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-//Fonts
+/* Start Font */
 @font-face {
   font-family: 'SF Mono';
   src: url('/fonts/sf-mono/SFMonoBold.otf') format('opentype');
@@ -49,8 +49,9 @@
   font-style: normal;
   font-display: swap;
 }
+/* End Font */
 
-//Global styles
+/* Start Global styles */
 html {
   -webkit-text-size-adjust: 100%;
   font-family: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -130,7 +131,7 @@ pre {
   --lightest-slate: #ccd6f6;
   --slate: #8892b0;
 }
-
+/* End Global styles */
 /* Start Animation */
 @keyframes wave {
   0% {
@@ -501,7 +502,8 @@ pre {
       &::after {
         content: '';
         @apply absolute -bottom-5 -left-5 z-[-1] hidden h-full w-full bg-secondary-dark;
-        @screen md {
+
+        @screen lg {
           @apply block;
         }
       }

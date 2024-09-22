@@ -60,7 +60,7 @@ const About: React.FC<AboutProps> = ({ fullName, description, image, technologie
   };
 
   return (
-    <section ref={sectionRef} id="about" className="about">
+    <section ref={sectionRef} id="about" className="about overflow-hidden">
       <h2 className="numbered-heading">About Me</h2>
       <div className="about_inner">
         <section className="about_content animate-up">

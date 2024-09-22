@@ -22,10 +22,10 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({ jobs }) => {
 
   return (
     <section 
-      className="work-experience"
+      className="work-experience overflow-hidden"
       ref={containerRef}
     >
-      <h2 className="numbered-heading">Where I've Worked</h2>
+      <h2 className="numbered-heading">Experience</h2>
       <div className="work-experience__container">
         {jobs.map((job, index) => (
           <WorkExperienceItem key={index} job={job} index={index} />
@@ -41,12 +41,12 @@ const WorkExperienceItem: React.FC<{ job: Job; index: number }> = ({ job, index 
 
   const itemVariants = {
     hidden: { 
-      x: index % 2 === 0 ? -50 : 50,
-      opacity: 0 
+      opacity: 0,
+      y: 20
     },
     visible: {
-      x: 0,
       opacity: 1,
+      y: 0,
       transition: {
         duration: 0.5,
         ease: "easeOut"
