@@ -133,7 +133,7 @@ const members: Record<string, Member> = {
 
 const jobs = [
   {
-    companyLogo: '/images/upwork-logo.png',
+    companyLogo: '/icons/upwork.svg',
     companyName: 'Upwork',
     position: 'Senior Software Engineering',
     duration: '8/2022 - Present',
@@ -145,7 +145,7 @@ const jobs = [
     link: '#',
   },
   {
-    companyLogo: '/images/upwork-logo.png',
+    companyLogo: '/icons/upwork.svg',
     companyName: 'Upwork',
     position: 'Senior Software Engineering',
     duration: '8/2022 - Present',
@@ -157,7 +157,7 @@ const jobs = [
     link: '#',
   },
   {
-    companyLogo: '/images/upwork-logo.png',
+    companyLogo: '/icons/upwork.svg',
     companyName: 'Upwork',
     position: 'Senior Software Engineering',
     duration: '8/2022 - Present',
@@ -169,7 +169,7 @@ const jobs = [
     link: '#',
   },
   {
-    companyLogo: '/images/upwork-logo.png',
+    companyLogo: '/icons/upwork.svg',
     companyName: 'Upwork',
     position: 'Senior Software Engineering',
     duration: '8/2022 - Present',
@@ -181,7 +181,7 @@ const jobs = [
     link: '#',
   },
   {
-    companyLogo: '/images/upwork-logo.png',
+    companyLogo: '/icons/upwork.svg',
     companyName: 'Upwork',
     position: 'Senior Software Engineering',
     duration: '8/2022 - Present',

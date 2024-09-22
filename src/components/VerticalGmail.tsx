@@ -2,7 +2,7 @@ interface VerticalGmailProps {
   email: string;
 }
 
-const VerticalGmail = ({ email }: VerticalGmailProps) => {
+const VerticalGmail: React.FC<VerticalGmailProps> = ({ email }) => {
   return (
     <section className="vertical-gmail">
       <a href={`mailto:${email}`} className="vertical-gmail_link">

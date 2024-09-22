@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
-const About = () => {
+const About: React.FC = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {

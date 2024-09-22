@@ -15,7 +15,7 @@ interface Props {
   otherStacks: string[];
 }
 
-const Stack = ({ stacks, otherStacks }: Props) => {
+const Stack: React.FC<Props> = ({ stacks, otherStacks }) => {
   const containerRef = useRef(null);
   const skillsRef = useRef(null);
   const techRef = useRef(null);
@@ -56,7 +56,7 @@ const Stack = ({ stacks, otherStacks }: Props) => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.3 },
     },
   };
 
@@ -65,8 +65,8 @@ const Stack = ({ stacks, otherStacks }: Props) => {
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.25,
+        delayChildren: 0.1,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -77,7 +77,7 @@ const Stack = ({ stacks, otherStacks }: Props) => {
       x: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.3,
       },
     },
   };
@@ -87,8 +87,8 @@ const Stack = ({ stacks, otherStacks }: Props) => {
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.1,
+        delayChildren: 0.1,
+        staggerChildren: 0.05,
       },
     },
   };
@@ -99,7 +99,7 @@ const Stack = ({ stacks, otherStacks }: Props) => {
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   };
@@ -128,13 +128,13 @@ const Stack = ({ stacks, otherStacks }: Props) => {
 
   return (
     <motion.section
-      id="experience"
+      id="stack"
       ref={containerRef}
       initial="hidden"
       animate={containerControls}
       variants={containerVariants}
       className="skills">
-      <h2 className="numbered-heading">Experience</h2>
+      <h2 className="numbered-heading">Stack</h2>
       <motion.section
         ref={skillsRef}
         variants={skillsVariants}

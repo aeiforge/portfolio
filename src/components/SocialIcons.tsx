@@ -13,7 +13,7 @@ interface SocialIconsProps {
 }
 
 
-const SocialIcons = ({ socials }: SocialIconsProps) => {
+const SocialIcons: React.FC<SocialIconsProps> = ({ socials }) => {
   return (
     <section className="social-icons">
       {socials.map((social) => (

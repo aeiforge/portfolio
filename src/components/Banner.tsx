@@ -8,7 +8,7 @@ interface BannerProps {
   status: string;
 }
 
-const Banner = ({ name, slogan, shortIntro, location, status }: BannerProps) => {
+const Banner: React.FC<BannerProps> = ({ name, slogan, shortIntro, location, status }) => {
   return (
     <section className="banner">
       <span className="banner_greeting">Hi, my name is</span>
