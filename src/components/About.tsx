@@ -22,7 +22,7 @@ const About = () => {
 
     if (sectionRef.current) {
       const animatedElements = sectionRef.current.querySelectorAll(
-        '.animate-up, .animate-right, .animate-left'
+        '.animate-up, .animate-right'
       );
       animatedElements.forEach(el => observer.observe(el));
     }
@@ -43,7 +43,7 @@ const About = () => {
     <section ref={sectionRef} id="about" className="about">
       <h2 className="numbered-heading">About Me</h2>
       <div className="about_inner">
-        <section className="about_content">
+        <section className="about_content animate-up">
           <p>
             Hello! My name is Brittany and I enjoy creating things that live on
             the internet. My interest in web development started back in 2012
@@ -76,7 +76,7 @@ const About = () => {
             ))}
           </ul>
         </section>
-        <section className="about_image">
+        <section className="about_image animate-right">
           <div className="about_image_wrapper">
             <Image
               src="/images/vinhdang.jpg"

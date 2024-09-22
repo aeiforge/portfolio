@@ -131,7 +131,7 @@ pre {
   --slate: #8892b0;
 }
 
-/* Animation */
+/* Start Animation */
 @keyframes wave {
   0% {
     transform: rotate(0deg);
@@ -174,15 +174,11 @@ pre {
 }
 
 .animate-up {
-  transform: translateY(100px);
-}
-
-.animate-left {
-  transform: translateX(100px);
+  @apply translate-y-7 md:translate-y-24;
 }
 
 .animate-right {
-  transform: translateX(100px);
+  @apply translate-x-7 md:translate-x-28;
 }
 
 .animate-up.is-visible,
@@ -191,24 +187,29 @@ pre {
   transform: translate(0);
 }
 
-/* Thêm transition cho việc reset animation */
 .animate-up:not(.is-visible),
 .animate-right:not(.is-visible) {
-  transition: none;
+  @apply transition-none;
 }
+/* End Animation */
 
 .highlight {
   @apply text-lightest-slate;
 }
 
+/* Start Header */
 .header {
   @apply fixed left-0 right-0 top-0 z-10 bg-primary-dark px-6 py-4 md:px-12;
 }
+/* End Header */
 
+/* Start Main */
 .main {
   @apply min-h-screen w-full bg-primary-dark px-6 md:px-24;
 }
+/* End Main */
 
+/* Start Navbar */
 .navbar {
   @apply flex items-center bg-primary-dark text-lightest-slate;
 
@@ -285,7 +286,9 @@ pre {
     }
   }
 }
+/* End Navbar */
 
+/* Start Banner */
 .banner {
   @apply flex h-screen min-h-screen flex-col justify-center bg-primary-dark md:mx-auto md:max-w-[1000px];
 
@@ -333,7 +336,9 @@ pre {
     }
   }
 }
+/* End Banner */
 
+/* Start Social Icons */
 .social-icons {
   @apply fixed bottom-0 left-12 z-10 hidden md:flex md:flex-col md:items-center;
 
@@ -355,7 +360,9 @@ pre {
     }
   }
 }
+/* End Social Icons */
 
+/* Start Vertical Gmail */
 .vertical-gmail {
   @apply fixed bottom-0 right-12 z-10 hidden md:flex md:items-center;
   writing-mode: vertical-rl;
@@ -370,12 +377,14 @@ pre {
     }
   }
 }
+/* End Vertical Gmail */
 
+/* Start About */
 .about {
   @apply mx-auto max-w-[1000px] py-24 text-slate;
 
   &_inner {
-    @apply grid items-start gap-12 md:grid-cols-[3fr,2fr] md:gap-0;
+    @apply grid items-center gap-12 md:grid-cols-[3fr,2fr] md:items-start md:gap-0;
   }
 
   &_content {
@@ -413,30 +422,34 @@ pre {
   }
 
   &_image {
-    @apply relative max-w-[300px] md:mr-5 md:justify-self-end;
+    @apply relative mx-auto max-w-[300px] md:mr-5 md:justify-self-end;
 
     &_wrapper {
       @apply relative block;
 
       &::before {
-        @apply absolute -right-5 -top-5 z-[-1] block h-full w-full border-2 border-secondary-dark;
+        @apply absolute -bottom-5 -right-4 z-[-1] block h-full w-[calc(100%+2rem)] border-2 border-secondary-dark;
         content: '';
+
+        @screen md {
+          @apply -right-5 -top-5 w-full;
+        }
       }
 
       &::after {
         content: '';
-        @apply absolute -bottom-5 -left-5 z-[-1] block hidden h-full w-full bg-secondary-dark;
+        @apply absolute -bottom-5 -left-5 z-[-1] hidden h-full w-full bg-secondary-dark;
         @screen md {
           @apply block;
         }
       }
 
       &:hover::before {
-        @apply -right-4 -top-4;
+        @apply md:-right-4 md:-top-4;
       }
 
       &:hover::after {
-        @apply -bottom-4 -left-4;
+        @apply md:-bottom-4 md:-left-4;
       }
     }
 
@@ -451,3 +464,4 @@ pre {
     }
   }
 }
+/* End About */
