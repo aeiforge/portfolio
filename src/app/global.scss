@@ -533,3 +533,25 @@ pre {
   }
 }
 /* End About */
+
+/* Start Skills */
+.skills {
+  @apply mx-auto max-w-[1000px];
+
+  min-height: 100dvh;
+
+  .numbered-heading {
+    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
+
+    &::before {
+      @apply mr-2 text-secondary-dark;
+      counter-increment: section 2;
+      content: '0' counter(section) '.';
+    }
+
+    &::after {
+      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
+      content: '';
+    }
+  }
+}
