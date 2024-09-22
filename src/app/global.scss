@@ -131,6 +131,76 @@ pre {
   --slate: #8892b0;
 }
 
+/* Animation */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.waving-hand {
+  display: inline-block;
+  animation: wave 2.5s infinite;
+  transform-origin: 70% 70%;
+}
+
+.animate-up,
+.animate-right {
+  opacity: 0;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.animate-up {
+  transform: translateY(100px);
+}
+
+.animate-left {
+  transform: translateX(100px);
+}
+
+.animate-right {
+  transform: translateX(100px);
+}
+
+.animate-up.is-visible,
+.animate-right.is-visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Thêm transition cho việc reset animation */
+.animate-up:not(.is-visible),
+.animate-right:not(.is-visible) {
+  transition: none;
+}
+
+.highlight {
+  @apply text-lightest-slate;
+}
+
 .header {
   @apply fixed left-0 right-0 top-0 z-10 bg-primary-dark px-6 py-4 md:px-12;
 }
@@ -140,7 +210,7 @@ pre {
 }
 
 .navbar {
-  @apply flex items-center bg-primary-dark text-white;
+  @apply flex items-center bg-primary-dark text-lightest-slate;
 
   &_logo {
     @apply mr-auto;
@@ -152,7 +222,7 @@ pre {
   }
 
   &_menu {
-    @apply flex flex-col items-center gap-4 text-white md:hidden;
+    @apply flex flex-col items-center gap-4 md:hidden;
 
     ul {
       li {
@@ -210,14 +280,14 @@ pre {
 
     button {
       svg {
-        @apply text-white;
+        @apply text-lightest-slate;
       }
     }
   }
 }
 
 .banner {
-  @apply flex h-screen min-h-screen flex-col justify-center bg-primary-dark text-white md:mx-auto md:max-w-[1000px];
+  @apply flex h-screen min-h-screen flex-col justify-center bg-primary-dark md:mx-auto md:max-w-[1000px];
 
   &_greeting {
     @apply mb-8 text-secondary-dark;
@@ -235,7 +305,7 @@ pre {
   }
 
   &_short-intro {
-    @apply my-12 max-w-[540px] font-calibre font-normal text-slate;
+    @apply my-12 max-w-[600px] font-normal text-slate;
   }
 
   &_info {
@@ -243,7 +313,7 @@ pre {
   }
 
   &_location {
-    @apply m-0 flex items-center font-normal;
+    @apply m-0 flex items-center font-normal text-lightest-slate;
     line-height: 1.1;
 
     &-icon {
@@ -252,7 +322,7 @@ pre {
   }
 
   &_status {
-    @apply m-0 flex items-center font-normal;
+    @apply m-0 flex items-center font-normal text-lightest-slate;
     line-height: 1.1;
 
     &-icon {
@@ -302,19 +372,15 @@ pre {
 }
 
 .about {
-  @apply mx-auto max-w-[900px] py-24;
+  @apply mx-auto max-w-[1000px] py-24 text-slate;
 
-  .inner {
-    @apply grid items-start gap-12 md:grid-cols-[3fr,2fr];
+  &_inner {
+    @apply grid items-start gap-12 md:grid-cols-[3fr,2fr] md:gap-0;
   }
 
-  .about-content {
+  &_content {
     p {
       @apply mb-4;
-    }
-
-    .highlight {
-      @apply text-secondary-dark;
     }
   }
 
@@ -333,23 +399,23 @@ pre {
     }
   }
 
-  .skills-list {
+  &_skills {
     @apply mt-5 grid grid-cols-[repeat(2,minmax(140px,200px))] gap-x-2 gap-y-1 overflow-hidden;
 
     li {
-      @apply relative pl-5 text-slate;
+      @apply relative pl-5;
 
       &::before {
-        @apply absolute left-0 text-secondary-dark;
+        @apply absolute left-0;
         content: '▹';
       }
     }
   }
 
-  .about-image {
-    @apply relative max-w-[300px];
+  &_image {
+    @apply relative max-w-[300px] md:mr-5 md:justify-self-end;
 
-    .wrapper {
+    &_wrapper {
       @apply relative block;
 
       &::before {
@@ -358,8 +424,11 @@ pre {
       }
 
       &::after {
-        @apply absolute -bottom-5 -left-5 z-[-1] block h-full w-full bg-secondary-dark;
         content: '';
+        @apply absolute -bottom-5 -left-5 z-[-1] block hidden h-full w-full bg-secondary-dark;
+        @screen md {
+          @apply block;
+        }
       }
 
       &:hover::before {
@@ -381,66 +450,4 @@ pre {
       filter: none;
     }
   }
-}
-
-/* Animation */
-@keyframes wave {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(14deg);
-  }
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(14deg);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
-  50% {
-    transform: rotate(10deg);
-  }
-  60% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-.waving-hand {
-  display: inline-block;
-  animation: wave 2.5s infinite;
-  transform-origin: 70% 70%;
-}
-
-.animate-up,
-.animate-right {
-  opacity: 0;
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
-}
-
-.animate-up {
-  transform: translateY(20px);
-}
-
-.animate-right {
-  transform: translateX(20px);
-}
-
-.animate-up.is-visible,
-.animate-right.is-visible {
-  opacity: 1;
-  transform: translate(0);
-}
-
-/* Thêm transition cho việc reset animation */
-.animate-up:not(.is-visible),
-.animate-right:not(.is-visible) {
-  transition: none;
 }
