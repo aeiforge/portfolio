@@ -277,9 +277,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
 
   return (
     <>
-      <header className={`header ${isHeaderVisible ? '' : 'header--hidden'}`}>
-        <Navbar />
-      </header>
+      <Navbar />
       <main className="main">
         <Banner
           name={member.fullName}

@@ -1,18 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <>
+    <header className="header">
       <nav className="navbar">
         <section className="navbar_logo">
           <h1>Aeiforge</h1>
         </section>
-        <section className="navbar_menu-desktop">
+        <section className="navbar_menu desktop important">
           <ul>
             <li>
               <Link href="#about">About</Link>
@@ -34,31 +38,24 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         </section>
-        <section className="navbar_resume-desktop">
+        <section className="navbar_resume desktop important">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             Download CV
           </button>
         </section>
         <section className="navbar_hamburger">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <Image
+              src={isMenuOpen ? '/icons/close.svg' : '/icons/hamburger.svg'}
+              alt="toggle"
+              width={24}
+              height={24}
+            />
           </button>
         </section>
       </nav>
       {isMenuOpen && (
-        <section className="navbar_shade">
+        <>
           <section className="navbar_menu">
             <ul>
               <li>
@@ -84,9 +81,9 @@ const Navbar: React.FC = () => {
           <section className="navbar_resume">
             <button>Download CV</button>
           </section>
-        </section>
+        </>
       )}
-    </>
+    </header>
   );
 };
 
