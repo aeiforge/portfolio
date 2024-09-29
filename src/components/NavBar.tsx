@@ -1,17 +1,49 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY === 0) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.scrollY === 0 || e.clientY <= 50) {
+        setIsHeaderVisible(true);
+      } else {
+        setIsHeaderVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [lastScrollY]);
 
   return (
-    <header className="header">
+    <header className={`header ${isHeaderVisible ? 'visible' : 'hidden'}`}>
       <nav className="navbar">
         <section className="navbar_logo">
           <h1>Aeiforge</h1>
