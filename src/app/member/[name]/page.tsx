@@ -240,41 +240,6 @@ export default function MemberPage({ params }: { params: { name: string } }) {
     [] as Array<{ name: string; url: string; icon: string }>
   );
 
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY === 0) {
-        setIsHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY) {
-        setIsHeaderVisible(false);
-      } else {
-        setIsHeaderVisible(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (window.scrollY === 0 || e.clientY <= 50) {
-        setIsHeaderVisible(true);
-      } else {
-        setIsHeaderVisible(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [lastScrollY]);
-
   return (
     <>
       <Navbar />
