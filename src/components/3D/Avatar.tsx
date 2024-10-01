@@ -61,7 +61,7 @@ const Avatar: React.FC<JSX.IntrinsicElements['group']> = props => {
 
 export const AvatarModel: React.FC<JSX.IntrinsicElements['group']> = props => {
   const group = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/models/fixed/huy.glb') as GLTFResult;
+  const { scene } = useGLTF('/models/fixed/minh_normal.glb') as GLTFResult;
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as GLTFResult;
 
@@ -153,6 +153,6 @@ export const AvatarModel: React.FC<JSX.IntrinsicElements['group']> = props => {
   );
 };
 
-useGLTF.preload('/models/fixed/huy.glb');
+useGLTF.preload('/models/fixed/minh_normal.glb');
 
 export default Avatar;

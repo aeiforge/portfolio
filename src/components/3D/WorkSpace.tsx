@@ -329,10 +329,11 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
     '/models/fixed/work-space.glb'
   ) as GLTFResult;
   return (
-    <group position={[0.02, -1.14, 0.25]}>
+    <group position={[0.02, -1.15, 0.25]}>
       <group {...props} dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]} scale={0.852}>
           <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+            {/* Start Imac */}
             <group
               position={[-2.044, 95.487, 62.52]}
               rotation={[Math.PI, -Math.PI / 2, 0]}
@@ -407,6 +408,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
                 position={[0.067, -0.074, 0.364]}
               />
             </group>
+            {/* End Imac */}
             {/* Start Chair */}
             <group
               position={[-2, 66, -32]}
@@ -422,6 +424,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
               />
             </group>
             {/* End Chair */}
+            {/* Start Samsung */}
             <group
               position={[33.339, 85.826, 34.832]}
               rotation={[Math.PI / 2, 0, Math.PI]}
@@ -564,6 +567,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
                 position={[0.591, -4.405, 0.112]}
               />
             </group>
+            {/* End Samsung */}
             <group
               position={[41.103, 85.916, 42.108]}
               rotation={[Math.PI / 2, 0, Math.PI]}
@@ -598,8 +602,9 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
                 material={materials['Material.002']}
               />
             </group>
+            {/* Start Magic Keyboard */}
             <group
-              position={[0.353, 85.953, 38.436]}
+              position={[1, 85.953, 36]}
               rotation={[-Math.PI / 2, 0, -Math.PI]}
               scale={1.138}>
               <mesh
@@ -817,6 +822,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
                 position={[0.165, 4.772, -0.125]}
               />
             </group>
+            {/* End Magic Keyboard */}
             <group
               position={[-54.794, 86.285, 77.61]}
               rotation={[-Math.PI / 2, 0, 0.013]}
