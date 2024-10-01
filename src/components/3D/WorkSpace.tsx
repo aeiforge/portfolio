@@ -328,6 +328,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF(
     '/models/fixed/work-space.glb'
   ) as GLTFResult;
+
   return (
     <group position={[0.02, -1.15, 0.25]}>
       <group {...props} dispose={null}>

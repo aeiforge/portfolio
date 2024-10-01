@@ -10,7 +10,7 @@ export default function Index() {
    */
   return (
     <>
-      <section className="w-[1000px] h-[1000px] m-auto">
+      <section className="w-screen h-screen">
         <Office />
       </section>
     </>

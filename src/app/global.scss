@@ -114,7 +114,7 @@ body {
 
 /* Start Main */
 .main {
-  @apply min-h-screen w-full bg-primary-dark px-6;
+  @apply min-h-screen w-full bg-primary-dark;
 
   @screen md {
     @apply px-24;
@@ -206,10 +206,31 @@ body {
 
 /* Start Banner */
 .banner {
-  @apply flex h-screen min-h-screen flex-col justify-center bg-primary-dark;
+  @apply flex h-screen min-h-screen w-screen flex-col-reverse justify-center bg-primary-dark;
+
+  &_office,
+  &_intro {
+    @apply w-screen;
+  }
+
+  &_office {
+    @apply h-1/2;
+  }
+
+  &_intro {
+    @apply px-6 pt-8;
+  }
 
   @screen md {
-    @apply mx-auto max-w-[1000px];
+    @apply flex-row;
+
+    &_office {
+      @apply h-screen w-1/2;
+    }
+
+    &_intro {
+      @apply flex w-1/2 flex-col justify-center;
+    }
   }
 
   &_greeting {
