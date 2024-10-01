@@ -1,15 +1,14 @@
 'use client';
 
 import { notFound } from 'next/navigation';
-import About from 'src/components/About';
 import Banner from 'src/components/Banner';
 import Footer from 'src/components/Footer';
+import AboutMe from 'src/components/members/AboutMe';
 import Navbar from 'src/components/NavBar';
 import SocialIcons from 'src/components/SocialIcons';
 import Stack from 'src/components/Stack';
 import VerticalGmail from 'src/components/VerticalGmail';
 import WorkExperience from 'src/components/WorkExperience';
-import { useState, useEffect } from 'react';
 
 interface SocialContact {
   name: string;
@@ -56,11 +55,12 @@ const members: Record<string, Member> = {
     role: 'FULLSTACK JAVASCRIPT/TYPESCRIPT',
     slogan: 'I build things for the web',
     description: [
-      "Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!",
+      'Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!',
       "Fast-forward to today, and I've had the privilege of working at {highlight}an advertising agency{/highlight}, {highlight}a start-up{/highlight}, {highlight}a huge corporation{/highlight}, and {highlight}a student-led design studio{/highlight}. My main focus these days is building accessible, inclusive products and digital experiences at {highlight}Upstatement{/highlight} for a variety of clients.",
-      "I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React."
+      'I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React.',
     ],
-    shortIntro: "I'm a fullstack developer with a passion for building web applications.",
+    shortIntro:
+      "I'm a fullstack developer with a passion for building web applications.",
     image: '/images/vinhdang.jpg',
     contact: {
       phone: '+84 902 818 547',
@@ -138,14 +138,7 @@ const members: Record<string, Member> = {
         'Kotlin',
         'Swift',
       ],
-      intro: [
-        'Javascript',
-        'Typescript',
-        'React',
-        'NextJS',
-        'NodeJS',
-        'Go',
-      ],
+      intro: ['Javascript', 'Typescript', 'React', 'NextJS', 'NodeJS', 'Go'],
     },
   },
   minh: {
@@ -153,11 +146,12 @@ const members: Record<string, Member> = {
     role: 'FULLSTACK JAVASCRIPT/TYPESCRIPT',
     slogan: 'Software Engineer',
     description: [
-      "Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!",
+      'Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!',
       "Fast-forward to today, and I've had the privilege of working at {highlight}an advertising agency{/highlight}, {highlight}a start-up{/highlight}, {highlight}a huge corporation{/highlight}, and {highlight}a student-led design studio{/highlight}. My main focus these days is building accessible, inclusive products and digital experiences at {highlight}Upstatement{/highlight} for a variety of clients.",
-      "I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React."
+      'I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React.',
     ],
-    shortIntro: "I'm a fullstack developer with a passion for building web/mobile applications.",
+    shortIntro:
+      "I'm a fullstack developer with a passion for building web/mobile applications.",
     image: '/images/vinhdang.jpg',
     contact: {
       phone: '+84 902 818 547',
@@ -235,14 +229,7 @@ const members: Record<string, Member> = {
         'Kotlin',
         'Swift',
       ],
-      intro: [
-        'Javascript',
-        'Typescript',
-        'React',
-        'NextJS',
-        'NodeJS',
-        'Go',
-      ],
+      intro: ['Javascript', 'Typescript', 'React', 'NextJS', 'NodeJS', 'Go'],
     },
   },
 };
@@ -350,12 +337,13 @@ export default function MemberPage({ params }: { params: { name: string } }) {
         />
         <SocialIcons socials={socialIcons} />
         <VerticalGmail email={member.contact.email.name} />
-        <About
+        {/* <About
           fullName={member.fullName}
           description={member.description}
           image={member.image}
           technologies={member.techstack.intro}
-        />
+        /> */}
+        <AboutMe />
         <Stack
           stacks={member.techstack.mainStackList}
           otherStacks={member.techstack.otherStackList}

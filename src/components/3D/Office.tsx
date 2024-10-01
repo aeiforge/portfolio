@@ -21,7 +21,7 @@ const Office = () => {
         maxDistance={10}
       />
       <group position={[-0.5, 0.8, 1]} rotation-y={Math.PI} scale={1.1}>
-        <AvatarModel />
+        <AvatarModel animation='typing' scale={0.8}/>
         <WorkSpaceModel />
       </group>
     </Canvas>
