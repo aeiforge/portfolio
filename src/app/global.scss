@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 /* Start Global styles */
-html {
-  @apply scroll-smooth font-mono;
+* {
+  @apply box-border scroll-smooth font-mono;
 
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  @apply bg-primary-dark font-[inherit] text-slate;
+  @apply font-[inherit] text-slate;
 }
 
 :root {
@@ -206,11 +206,11 @@ body {
 
 /* Start Banner */
 .banner {
-  @apply flex h-screen min-h-screen w-screen flex-col-reverse justify-center bg-primary-dark;
+  @apply flex h-screen min-h-screen w-full flex-col-reverse justify-center bg-primary-dark;
 
   &_office,
   &_intro {
-    @apply w-screen;
+    @apply w-full;
   }
 
   &_office {
