@@ -1,12 +1,11 @@
 'use client';
 
 import {
-  OrbitControls,
   useAnimations,
   useFBX,
   useGLTF
 } from '@react-three/drei';
-import { Canvas, useFrame, useGraph } from '@react-three/fiber';
+import { useGraph } from '@react-three/fiber';
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTF, SkeletonUtils } from 'three-stdlib';
@@ -52,20 +51,20 @@ export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
   animation?: 'typing' | 'playingPiano' | 'greeting' | null;
 }> = ({ animation, ...props }) => {
   const group = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/models/fixed/minh_normal.glb') as GLTFResult;
+  const { scene } = useGLTF('/models/fixed/minh.glb') as GLTFResult;
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as GLTFResult;
 
   const { animations: typingAnimation } = useFBX(
-    '/models/animations/minh_typing.fbx'
+    '/models/animations/typing.fbx'
   );
 
   const { animations: playingPianoAnimation } = useFBX(
-    '/models/animations/minh_playing_piano.fbx'
+    '/models/animations/playing_piano.fbx'
   );
 
   const { animations: greetingAnimation } = useFBX(
-    '/models/animations/minh_greeting.fbx'
+    '/models/animations/greeting.fbx'
   );
 
   typingAnimation[0].name = 'typing';
@@ -160,6 +159,6 @@ export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
   );
 };
 
-useGLTF.preload('/models/fixed/minh_normal.glb');
+useGLTF.preload('/models/fixed/minh.glb');
 
 export default AvatarModel;
