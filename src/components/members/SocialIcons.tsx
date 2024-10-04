@@ -12,7 +12,6 @@ interface SocialIconsProps {
   socials: SocialIcon[];
 }
 
-
 const SocialIcons: React.FC<SocialIconsProps> = ({ socials }) => {
   return (
     <section className="social-icons">

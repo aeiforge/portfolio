@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -71,7 +69,7 @@ const Navbar: React.FC = () => {
           </ul>
         </section>
         <section className="navbar_resume desktop important">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="shaded-button">
             Download CV
           </button>
         </section>
@@ -111,7 +109,7 @@ const Navbar: React.FC = () => {
             </ul>
           </section>
           <section className="navbar_resume">
-            <button>Download CV</button>
+            <button className="shaded-button">Download CV</button>
           </section>
         </>
       )}

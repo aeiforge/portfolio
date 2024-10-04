@@ -12,7 +12,7 @@
 }
 
 body {
-  @apply font-[inherit] text-slate;
+  @apply bg-primary-dark font-[inherit] text-slate;
 }
 
 :root {
@@ -22,6 +22,30 @@ body {
   --slate: #8892b0;
   --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
+.numbered-heading {
+  @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
+
+  &::before {
+    @apply mr-2 text-secondary-dark;
+    counter-increment: section 1;
+    content: '0' counter(section) '.';
+  }
+
+  &::after {
+    @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
+    content: '';
+  }
+}
+
+.shaded-button {
+  @apply w-full rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
+
+  @screen md {
+    @apply w-fit;
+  }
+}
+
 /* End Global styles */
 
 /* Start Animation */
@@ -114,7 +138,7 @@ body {
 
 /* Start Main */
 .main {
-  @apply min-h-screen w-full bg-primary-dark;
+  @apply min-h-screen w-full bg-primary-dark px-6;
 
   @screen md {
     @apply px-24;
@@ -167,14 +191,6 @@ body {
     @screen md {
       @apply ml-4 mt-0 block w-fit px-0;
     }
-
-    button {
-      @apply w-full rounded border border-solid border-secondary-dark bg-inherit px-4 py-2 text-secondary-dark outline-none transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[3px_3px_0_0_var(--secondary-dark)];
-
-      @screen md {
-        @apply w-fit;
-      }
-    }
   }
 
   &_menu,
@@ -206,7 +222,7 @@ body {
 
 /* Start Banner */
 .banner {
-  @apply flex h-screen min-h-screen w-full flex-col-reverse justify-center bg-primary-dark;
+  @apply flex h-screen w-full flex-col-reverse justify-center bg-primary-dark;
 
   &_office,
   &_intro {
@@ -218,14 +234,14 @@ body {
   }
 
   &_intro {
-    @apply px-6 pt-8;
+    @apply pt-20;
   }
 
   @screen md {
     @apply flex-row;
 
     &_office {
-      @apply h-screen w-1/2;
+      @apply h-full w-1/2;
     }
 
     &_intro {
@@ -350,21 +366,6 @@ body {
     }
   }
 
-  .numbered-heading {
-    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
-
-    &::before {
-      @apply mr-2 text-secondary-dark;
-      counter-increment: section 1;
-      content: '0' counter(section) '.';
-    }
-
-    &::after {
-      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
-      content: '';
-    }
-  }
-
   &_skills {
     @apply mt-5 grid grid-cols-[repeat(2,minmax(140px,200px))] gap-x-2 gap-y-1 overflow-hidden;
 
@@ -451,21 +452,6 @@ body {
 .skills {
   @apply mx-auto max-w-[1000px] py-16;
 
-  .numbered-heading {
-    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
-
-    &::before {
-      @apply mr-2 text-secondary-dark;
-      counter-increment: section 2;
-      content: '0' counter(section) '.';
-    }
-
-    &::after {
-      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
-      content: '';
-    }
-  }
-
   &_grid {
     @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
   }
@@ -519,7 +505,7 @@ body {
   }
 
   &_other-tech-item {
-    @apply rounded-full bg-secondary-dark px-3 py-1 text-sm;
+    @apply rounded-full bg-secondary-dark px-3 py-1 text-sm text-primary-dark;
   }
 }
 /* End Skills */
@@ -608,21 +594,6 @@ body {
 
   &_link {
     @apply text-secondary-dark hover:underline;
-  }
-
-  .numbered-heading {
-    @apply mb-12 flex items-center whitespace-nowrap text-3xl font-semibold text-lightest-slate;
-
-    &::before {
-      @apply mr-2 text-secondary-dark;
-      counter-increment: section 3;
-      content: '0' counter(section) '.';
-    }
-
-    &::after {
-      @apply ml-4 h-px w-full bg-lightest-slate opacity-25;
-      content: '';
-    }
   }
 }
 /* End Work Experience */

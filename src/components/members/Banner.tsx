@@ -1,5 +1,3 @@
-'use client';
-
 import dynamic from 'next/dynamic';
 
 const Office = dynamic(() => import('src/components/3D/Office'), {

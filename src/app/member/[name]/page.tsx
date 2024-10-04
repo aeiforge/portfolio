@@ -1,14 +1,14 @@
 'use client';
 
 import { notFound } from 'next/navigation';
-import Banner from 'src/components/Banner';
-import Footer from 'src/components/Footer';
 import AboutMe from 'src/components/members/AboutMe';
-import Navbar from 'src/components/NavBar';
-import SocialIcons from 'src/components/SocialIcons';
-import Stack from 'src/components/Stack';
-import VerticalGmail from 'src/components/VerticalGmail';
-import WorkExperience from 'src/components/WorkExperience';
+import Banner from 'src/components/members/Banner';
+import Footer from 'src/components/members/Footer';
+import Navbar from 'src/components/members/NavBar';
+import SocialIcons from 'src/components/members/SocialIcons';
+import Stack from 'src/components/members/Stack';
+import VerticalGmail from 'src/components/members/VerticalGmail';
+import WorkExperience from 'src/components/members/WorkExperience';
 
 interface SocialContact {
   name: string;
