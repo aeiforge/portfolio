@@ -33,7 +33,7 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({ jobs }) => {
       </div>
     </section>
   );
-};
+};  
 
 const WorkExperienceItem: React.FC<{ job: Job; index: number }> = ({ job, index }) => {
   const itemRef = useRef(null);

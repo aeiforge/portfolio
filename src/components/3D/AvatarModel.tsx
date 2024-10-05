@@ -103,7 +103,7 @@ export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
   }, [animation]);
 
   return (
-    <group {...props} ref={group} dispose={null} position-y={-1} rotation-x={-Math.PI / 2} position={[0, 0, 0]}>
+    <group {...props} ref={group} dispose={null} position-y={-1} rotation-x={-Math.PI / 2}>
     <ambientLight intensity={1.5} />
     <primitive object={nodes.Hips} />
     <skinnedMesh
