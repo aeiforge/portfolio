@@ -1,10 +1,25 @@
 'use client';
 
+import { motion, useAnimation, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import Greeting from '../3D/Greeting';
-import WorldMap from '../3D/WorldMap';
 import Laying from '../3D/Laying';
+import WorldMap from '../3D/WorldMap';
+
 const AboutMe = () => {
+  const containerRef = useRef(null);
+  const containerControls = useAnimation();
+  const containerInView = useInView(containerRef, { once: false, amount: 0.1 });
+
+  useEffect(() => {
+    if (containerInView) {
+      containerControls.start('visible');
+    } else {
+      containerControls.start('hidden');
+    }
+  }, [containerControls, containerInView]);
+
   const keyTechnologies = [
     { name: 'JavaScript', icon: '/icons/javascript.svg' },
     { name: 'TypeScript', icon: '/icons/typescript.svg' },
@@ -23,19 +38,57 @@ const AboutMe = () => {
     { name: 'Three.js', icon: '/icons/threedotjs.svg' },
   ];
 
+  const [showModel, setShowModel] = useState(false);
+
+  useEffect(() => {
+    if (containerInView) {
+      const timer = setTimeout(() => setShowModel(true), 100);
+      return () => clearTimeout(timer);
+    } else {
+      setShowModel(false);
+    }
+  }, [containerInView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.3, delayChildren: 0.1, staggerChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
-    <section className="mx-auto my-20 h-full md:w-[1000px]" id="about">
+    <motion.section
+      ref={containerRef}
+      initial="hidden"
+      animate={containerControls}
+      variants={containerVariants}
+      className="mx-auto my-20 h-full md:w-[1000px]"
+      id="about">
       <h2 className="numbered-heading">About Me</h2>
       <div className="grid h-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6">
-        <div className="col-span-1 xl:row-span-2">
+        <motion.div
+          className="col-span-1 xl:row-span-2"
+          variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <div className="flex h-full w-full justify-center">
               <WorldMap />
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="col-span-1 xl:row-span-3">
+        <motion.div
+          className="col-span-1 xl:row-span-3"
+          variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
               <div className="grid grid-cols-3 gap-4 p-6">
@@ -53,13 +106,15 @@ const AboutMe = () => {
               </div>
             </section>
             <p className="p-6">
-              These are the key tech stacks I’ve frequently used during project
+              These are the key tech stacks I've frequently used during project
               development. Learn more here.
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="col-span-1 xl:row-span-3">
+        <motion.div
+          className="col-span-1 xl:row-span-3"
+          variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
               <div className="grid grid-cols-3 gap-4 p-6">
@@ -77,16 +132,18 @@ const AboutMe = () => {
               </div>
             </section>
             <p className="p-6">
-              These are the key tech stacks I’m currently learning and interested
-              in the next few months.
+              These are the key tech stacks I'm currently learning and
+              interested in the next few months.
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="xl:col-span-1 xl:row-span-4">
+        <motion.div
+          className="xl:col-span-1 xl:row-span-4"
+          variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              <Greeting position={[0, 0, 0]} />
+              {showModel && <Greeting position={[0, 0, 0]} />}
             </section>
             <p className="p-6">
               Hi, I'm Minh. I have nearly 5 years of experience as a software
@@ -94,12 +151,14 @@ const AboutMe = () => {
               and oil and gas. Learn more here!
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="xl:col-span-2 xl:row-span-3">
+        <motion.div
+          className="xl:col-span-2 xl:row-span-3"
+          variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              <Laying />
+              {showModel && <Laying />}
             </section>
             <p className="p-6">
               I am currently here looking for a second job as a freelancer.
@@ -109,9 +168,9 @@ const AboutMe = () => {
               requirements.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

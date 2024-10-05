@@ -22,7 +22,7 @@ const Office = () => {
         maxDistance={10}
       />
       <Suspense fallback={<CanvasLoader />}>
-        <group position={[-0.5, 0.8, 1]} rotation-y={Math.PI} scale={1.1}>
+        <group position={[-0.5, 0.8, 1]} rotation-y={Math.PI} scale={1}>
           <AvatarModel animation="typing" scale={0.8} />
           <WorkSpaceModel />
         </group>
