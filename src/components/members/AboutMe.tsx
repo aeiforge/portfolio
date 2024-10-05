@@ -13,7 +13,10 @@ type AboutMeProps = {
   description: string[];
   expectations: string[];
   keyTechnologies: { name: string; icon: string }[];
+  keyTechnologiesDescription: string[];
   futureTechnologies: { name: string; icon: string }[];
+  futureTechnologiesDescription: string[];
+  linkProps: Record<string, { href: string }>;
 };
 
 const AboutMe = ({
@@ -21,7 +24,10 @@ const AboutMe = ({
   description,
   expectations,
   keyTechnologies,
+  keyTechnologiesDescription,
   futureTechnologies,
+  futureTechnologiesDescription,
+  linkProps,
 }: AboutMeProps) => {
   const containerRef = useRef(null);
   const containerControls = useAnimation();
@@ -102,10 +108,11 @@ const AboutMe = ({
                 ))}
               </div>
             </section>
-            <p className="p-6">
-              These are the key tech stacks I've frequently used during project
-              development. Learn more here.
-            </p>
+            {keyTechnologiesDescription.map((paragraph, index) => (
+              <p className="p-6" key={index}>
+                {renderDescription(paragraph, linkProps)}
+              </p>
+            ))}
           </div>
         </motion.div>
 
@@ -128,10 +135,11 @@ const AboutMe = ({
                 ))}
               </div>
             </section>
-            <p className="p-6">
-              These are the key tech stacks I'm currently learning and
-              interested in the next few months.
-            </p>
+            {futureTechnologiesDescription.map((paragraph, index) => (
+              <p className="p-6" key={index}>
+                {renderDescription(paragraph, linkProps)}
+              </p>
+            ))}
           </div>
         </motion.div>
 
@@ -146,7 +154,7 @@ const AboutMe = ({
             </section>
             {description.map((paragraph, index) => (
               <p className="p-6" key={index}>
-                {renderDescription(paragraph)}
+                {renderDescription(paragraph, linkProps)}
               </p>
             ))}
           </div>
@@ -167,7 +175,7 @@ const AboutMe = ({
             </section>
             {expectations.map((paragraph, index) => (
               <p className="p-6" key={index}>
-                {renderDescription(paragraph)}
+                {renderDescription(paragraph, linkProps)}
               </p>
             ))}
           </div>
