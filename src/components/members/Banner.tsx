@@ -6,7 +6,7 @@ const Office = dynamic(() => import('src/components/3D/Office'), {
 
 interface BannerProps {
   name: string;
-  slogan: string;
+  role: string;
   shortIntro: string;
   location: string;
   status: string;
@@ -15,7 +15,7 @@ interface BannerProps {
 
 const Banner: React.FC<BannerProps> = ({
   name,
-  slogan,
+  role,
   shortIntro,
   location,
   status,
@@ -31,7 +31,7 @@ const Banner: React.FC<BannerProps> = ({
         <h2 className="banner_name">
           {name} <span className="waving-hand">👋</span>
         </h2>
-        <h3 className="banner_sologan">{slogan}</h3>
+        <h3 className="banner_sologan">{role}</h3>
         <p className="banner_short-intro">{shortIntro}</p>
         <section className="banner_info">
           <section className="banner_location">

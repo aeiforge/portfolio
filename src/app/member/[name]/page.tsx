@@ -45,15 +45,17 @@ interface Member {
   techstack: {
     mainStackList: MainStack[];
     otherStackList: string[];
-    intro: string[];
+    keyTechnologies: { name: string; icon: string }[];
+    futureTechnologies: { name: string; icon: string }[];
   };
   modelUrl: string;
+  expectations: string[];
 }
 
 const members: Record<string, Member> = {
   vinh: {
     fullName: 'Vinh Dang',
-    role: 'FULLSTACK JAVASCRIPT/TYPESCRIPT',
+    role: 'Software Engineer',
     slogan: 'I build things for the web',
     description: [
       'Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!',
@@ -139,18 +141,34 @@ const members: Record<string, Member> = {
         'Kotlin',
         'Swift',
       ],
-      intro: ['Javascript', 'Typescript', 'React', 'NextJS', 'NodeJS', 'Go'],
+      keyTechnologies: [
+        { name: 'JavaScript', icon: '/icons/javascript.svg' },
+        { name: 'TypeScript', icon: '/icons/typescript.svg' },
+        { name: 'Angular', icon: '/icons/angular.svg' },
+        { name: 'HTML5', icon: '/icons/html5.svg' },
+        { name: 'Sass', icon: '/icons/sass.svg' },
+        { name: 'Tailwind', icon: '/icons/tailwindcss.svg' },
+        { name: 'Nest.js', icon: '/icons/nestjs.svg' },
+        { name: 'Docker', icon: '/icons/docker.svg' },
+        { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
+      ],
+      futureTechnologies: [
+        { name: 'Go', icon: '/icons/go.svg' },
+        { name: 'Remix', icon: '/icons/remix.svg' },
+        { name: 'Three.js', icon: '/icons/threedotjs.svg' },
+      ],
     },
     modelUrl: '/models/fixed/vinh.glb',
+    expectations: [
+      '',
+    ],
   },
   minh: {
     fullName: 'Minh Vo',
-    role: 'FULLSTACK JAVASCRIPT/TYPESCRIPT',
+    role: 'Software Engineer',
     slogan: 'Software Engineer',
     description: [
-      'Hello! My name is {highlight}Vinh Dang{/highlight} and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!',
-      "Fast-forward to today, and I've had the privilege of working at {highlight}an advertising agency{/highlight}, {highlight}a start-up{/highlight}, {highlight}a huge corporation{/highlight}, and {highlight}a student-led design studio{/highlight}. My main focus these days is building accessible, inclusive products and digital experiences at {highlight}Upstatement{/highlight} for a variety of clients.",
-      'I also recently {highlight}launched a course{/highlight} that covers everything you need to build a web app with the Spotify API using Node & React.',
+      'Hi, I\'m  {highlight}Minh{/highlight}. I have nearly 5 years of experience as a {highlight}Software Engineer{/highlight} with skills across CRM, finance, blockchain, healthcare, and oil and gas.',
     ],
     shortIntro:
       "I'm a fullstack developer with a passion for building web/mobile applications.",
@@ -231,9 +249,27 @@ const members: Record<string, Member> = {
         'Kotlin',
         'Swift',
       ],
-      intro: ['Javascript', 'Typescript', 'React', 'NextJS', 'NodeJS', 'Go'],
+      keyTechnologies: [
+        { name: 'JavaScript', icon: '/icons/javascript.svg' },
+        { name: 'TypeScript', icon: '/icons/typescript.svg' },
+        { name: 'Angular', icon: '/icons/angular.svg' },
+        { name: 'HTML5', icon: '/icons/html5.svg' },
+        { name: 'Sass', icon: '/icons/sass.svg' },
+        { name: 'Tailwind', icon: '/icons/tailwindcss.svg' },
+        { name: 'Nest.js', icon: '/icons/nestjs.svg' },
+        { name: 'Docker', icon: '/icons/docker.svg' },
+        { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
+      ],
+      futureTechnologies: [
+        { name: 'Go', icon: '/icons/go.svg' },
+        { name: 'Remix', icon: '/icons/remix.svg' },
+        { name: 'Three.js', icon: '/icons/threedotjs.svg' },
+      ],
     },
     modelUrl: '/models/fixed/minh.glb',
+    expectations: [
+      'I am currently here looking for a {highlight}second job as a freelancer{/highlight}. Although based in Ho Chi Minh City, Vietnam, I am very flexible with {highlight}time zone communications and locations{/highlight}. Please feel free to contact me if you are looking for someone who can meet your job requirements.',
+    ],
   },
 };
 
@@ -333,7 +369,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
       <main className="main">
         <Banner
           name={member.fullName}
-          slogan={member.slogan}
+          role={member.role}
           shortIntro={member.shortIntro}
           location={member.contact.location}
           status={member.contact.status}
@@ -341,7 +377,13 @@ export default function MemberPage({ params }: { params: { name: string } }) {
         />
         <SocialIcons socials={socialIcons} />
         <VerticalGmail email={member.contact.email.name} />
-        <AboutMe modelUrl={member.modelUrl} />
+        <AboutMe
+          modelUrl={member.modelUrl}
+          description={member.description}
+          keyTechnologies={member.techstack.keyTechnologies}
+          expectations={member.expectations}
+          futureTechnologies={member.techstack.futureTechnologies}
+        />
         <Stack
           stacks={member.techstack.mainStackList}
           otherStacks={member.techstack.otherStackList}

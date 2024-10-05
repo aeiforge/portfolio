@@ -3,11 +3,26 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import renderDescription from 'src/utils/common';
 import Greeting from '../3D/Greeting';
 import Laying from '../3D/Laying';
 import WorldMap from '../3D/WorldMap';
 
-const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
+type AboutMeProps = {
+  modelUrl: string;
+  description: string[];
+  expectations: string[];
+  keyTechnologies: { name: string; icon: string }[];
+  futureTechnologies: { name: string; icon: string }[];
+};
+
+const AboutMe = ({
+  modelUrl,
+  description,
+  expectations,
+  keyTechnologies,
+  futureTechnologies,
+}: AboutMeProps) => {
   const containerRef = useRef(null);
   const containerControls = useAnimation();
   const containerInView = useInView(containerRef, { once: false, amount: 0.1 });
@@ -19,24 +34,6 @@ const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
       containerControls.start('hidden');
     }
   }, [containerControls, containerInView]);
-
-  const keyTechnologies = [
-    { name: 'JavaScript', icon: '/icons/javascript.svg' },
-    { name: 'TypeScript', icon: '/icons/typescript.svg' },
-    { name: 'Angular', icon: '/icons/angular.svg' },
-    { name: 'HTML5', icon: '/icons/html5.svg' },
-    { name: 'Sass', icon: '/icons/sass.svg' },
-    { name: 'Tailwind', icon: '/icons/tailwindcss.svg' },
-    { name: 'Nest.js', icon: '/icons/nestjs.svg' },
-    { name: 'Docker', icon: '/icons/docker.svg' },
-    { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
-  ];
-
-  const futureTechnologies = [
-    { name: 'Go', icon: '/icons/go.svg' },
-    { name: 'Remix', icon: '/icons/remix.svg' },
-    { name: 'Three.js', icon: '/icons/threedotjs.svg' },
-  ];
 
   const [showModel, setShowModel] = useState(false);
 
@@ -143,13 +140,15 @@ const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
           variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              {showModel && <Greeting position={[0, 0, 0]} modelUrl={modelUrl}/>}
+              {showModel && (
+                <Greeting position={[0, 0, 0]} modelUrl={modelUrl} />
+              )}
             </section>
-            <p className="p-6">
-              Hi, I'm Minh. I have nearly 5 years of experience as a software
-              engineer with skills across CRM, finance, blockchain, healthcare,
-              and oil and gas. Learn more here!
-            </p>
+            {description.map((paragraph, index) => (
+              <p className="p-6" key={index}>
+                {renderDescription(paragraph)}
+              </p>
+            ))}
           </div>
         </motion.div>
 
@@ -158,15 +157,19 @@ const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
           variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              {showModel && <Laying position={[-0.8, 2, 0.2]} scale={2.5} modelUrl={modelUrl} />}
+              {showModel && (
+                <Laying
+                  position={[-0.8, 2, 0.2]}
+                  scale={2.5}
+                  modelUrl={modelUrl}
+                />
+              )}
             </section>
-            <p className="p-6">
-              I am currently here looking for a second job as a freelancer.
-              Although based in Ho Chi Minh City, Vietnam, I am very flexible
-              with time zone communications and locations. Please feel free to
-              contact me if you are looking for someone who can meet your job
-              requirements.
-            </p>
+            {expectations.map((paragraph, index) => (
+              <p className="p-6" key={index}>
+                {renderDescription(paragraph)}
+              </p>
+            ))}
           </div>
         </motion.div>
       </div>
