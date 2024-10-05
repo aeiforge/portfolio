@@ -143,7 +143,7 @@ const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
           variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              {showModel && <Greeting props={{ position: [0, 0, 0] }} modelUrl={modelUrl}/>}
+              {showModel && <Greeting position={[0, 0, 0]} modelUrl={modelUrl}/>}
             </section>
             <p className="p-6">
               Hi, I'm Minh. I have nearly 5 years of experience as a software
@@ -158,7 +158,7 @@ const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
           variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              {showModel && <Laying modelUrl={modelUrl} />}
+              {showModel && <Laying position={[-0.8, 2, 0.2]} scale={2.5} modelUrl={modelUrl} />}
             </section>
             <p className="p-6">
               I am currently here looking for a second job as a freelancer.

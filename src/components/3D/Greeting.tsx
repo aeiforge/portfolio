@@ -4,10 +4,11 @@ import { Suspense } from 'react';
 import CanvasLoader from '../common/CanvasLoader';
 import AvatarModel from './AvatarModel';
 
-const Greeting = ({ 
-  modelUrl, 
-  props 
-}: { modelUrl: string, props: JSX.IntrinsicElements['group'] }) => {
+type GreetingProps = JSX.IntrinsicElements['group'] & {
+  modelUrl: string;
+};
+
+const Greeting = ({ modelUrl, ...props }: GreetingProps) => {
   return (
     <Canvas>
       <ambientLight intensity={1} />
