@@ -48,7 +48,7 @@ type GLTFResult = GLTF & {
 
 
 export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
-  animation?: 'typing' | 'playingPiano' | 'greeting' | null;
+  animation?: 'typing' | 'playingPiano' | 'greeting' | 'laying' | null;
 }> = ({ animation, ...props }) => {
   const group = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/models/fixed/minh.glb') as GLTFResult;
@@ -67,11 +67,21 @@ export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
     '/models/animations/greeting.fbx'
   );
 
+  const { animations: layingAnimation } = useFBX(
+    '/models/animations/male_laying_pose.fbx'
+  );
+
   typingAnimation[0].name = 'typing';
   playingPianoAnimation[0].name = 'playingPiano';
   greetingAnimation[0].name = 'greeting';
+  layingAnimation[0].name = 'laying';
  
-  const { actions } = useAnimations([typingAnimation[0], playingPianoAnimation[0], greetingAnimation[0]], group);
+  const { actions } = useAnimations([
+    typingAnimation[0],
+    playingPianoAnimation[0],
+    greetingAnimation[0],
+    layingAnimation[0],
+  ], group);
 
   useEffect(() => {
     switch (animation) {
@@ -83,6 +93,9 @@ export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
         break;
       case 'greeting':
         actions['greeting']?.reset()?.play();
+        break;
+      case 'laying':
+        actions['laying']?.reset()?.play();
         break;
       default:
         break;
