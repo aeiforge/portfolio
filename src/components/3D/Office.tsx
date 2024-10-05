@@ -2,9 +2,10 @@
 
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useRef } from 'react';
-import { AvatarModel } from './Avatar';
-import WorkSpaceModel from './WorkSpace';
+import { Suspense, useRef } from 'react';
+import CanvasLoader from '../common/CanvasLoader';
+import AvatarModel from './AvatarModel';
+import WorkSpaceModel from './WorkSpaceModel';
 
 const Office = () => {
   const controlsRef = useRef(null);
@@ -20,10 +21,12 @@ const Office = () => {
         minDistance={2}
         maxDistance={10}
       />
-      <group position={[-0.5, 0.8, 1]} rotation-y={Math.PI} scale={1.1}>
-        <AvatarModel animation='typing' scale={0.8}/>
-        <WorkSpaceModel />
-      </group>
+      <Suspense fallback={<CanvasLoader />}>
+        <group position={[-0.5, 0.8, 1]} rotation-y={Math.PI} scale={1.1}>
+          <AvatarModel animation="typing" scale={0.8} />
+          <WorkSpaceModel />
+        </group>
+      </Suspense>
     </Canvas>
   );
 };
