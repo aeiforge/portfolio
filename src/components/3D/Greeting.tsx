@@ -4,7 +4,10 @@ import { Suspense } from 'react';
 import CanvasLoader from '../common/CanvasLoader';
 import AvatarModel from './AvatarModel';
 
-const Greeting = (props: JSX.IntrinsicElements['group']) => {
+const Greeting = ({ 
+  modelUrl, 
+  props 
+}: { modelUrl: string, props: JSX.IntrinsicElements['group'] }) => {
   return (
     <Canvas>
       <ambientLight intensity={1} />
@@ -12,7 +15,7 @@ const Greeting = (props: JSX.IntrinsicElements['group']) => {
       <PerspectiveCamera makeDefault position={[0, 8, 8]} fov={8} />
       <Suspense fallback={<CanvasLoader />}>
         <group {...props}>
-          <AvatarModel animation="greeting" />
+          <AvatarModel animation="greeting" modelUrl={modelUrl} />
         </group>
       </Suspense>
     </Canvas>

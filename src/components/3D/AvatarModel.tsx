@@ -49,9 +49,10 @@ type GLTFResult = GLTF & {
 
 export const AvatarModel: React.FC<JSX.IntrinsicElements['group'] & {
   animation?: 'typing' | 'playingPiano' | 'greeting' | 'laying' | null;
-}> = ({ animation, ...props }) => {
+  modelUrl: string;
+}> = ({ animation, modelUrl, ...props }) => {
   const group = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/models/fixed/minh.glb') as GLTFResult;
+  const { scene } = useGLTF(modelUrl) as GLTFResult;
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as GLTFResult;
 

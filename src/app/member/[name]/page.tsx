@@ -47,6 +47,7 @@ interface Member {
     otherStackList: string[];
     intro: string[];
   };
+  modelUrl: string;
 }
 
 const members: Record<string, Member> = {
@@ -140,6 +141,7 @@ const members: Record<string, Member> = {
       ],
       intro: ['Javascript', 'Typescript', 'React', 'NextJS', 'NodeJS', 'Go'],
     },
+    modelUrl: '/models/fixed/vinh.glb',
   },
   minh: {
     fullName: 'Minh Vo',
@@ -231,6 +233,7 @@ const members: Record<string, Member> = {
       ],
       intro: ['Javascript', 'Typescript', 'React', 'NextJS', 'NodeJS', 'Go'],
     },
+    modelUrl: '/models/fixed/minh.glb',
   },
 };
 
@@ -334,16 +337,11 @@ export default function MemberPage({ params }: { params: { name: string } }) {
           shortIntro={member.shortIntro}
           location={member.contact.location}
           status={member.contact.status}
+          modelUrl={member.modelUrl}
         />
         <SocialIcons socials={socialIcons} />
         <VerticalGmail email={member.contact.email.name} />
-        {/* <About
-          fullName={member.fullName}
-          description={member.description}
-          image={member.image}
-          technologies={member.techstack.intro}
-        /> */}
-        <AboutMe />
+        <AboutMe modelUrl={member.modelUrl} />
         <Stack
           stacks={member.techstack.mainStackList}
           otherStacks={member.techstack.otherStackList}

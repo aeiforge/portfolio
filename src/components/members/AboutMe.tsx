@@ -7,7 +7,7 @@ import Greeting from '../3D/Greeting';
 import Laying from '../3D/Laying';
 import WorldMap from '../3D/WorldMap';
 
-const AboutMe = () => {
+const AboutMe = ({ modelUrl }: { modelUrl: string }) => {
   const containerRef = useRef(null);
   const containerControls = useAnimation();
   const containerInView = useInView(containerRef, { once: false, amount: 0.1 });
@@ -143,7 +143,7 @@ const AboutMe = () => {
           variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              {showModel && <Greeting position={[0, 0, 0]} />}
+              {showModel && <Greeting props={{ position: [0, 0, 0] }} modelUrl={modelUrl}/>}
             </section>
             <p className="p-6">
               Hi, I'm Minh. I have nearly 5 years of experience as a software
@@ -158,7 +158,7 @@ const AboutMe = () => {
           variants={itemVariants}>
           <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
             <section className="h-3/4 w-full">
-              {showModel && <Laying />}
+              {showModel && <Laying modelUrl={modelUrl} />}
             </section>
             <p className="p-6">
               I am currently here looking for a second job as a freelancer.
