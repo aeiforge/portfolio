@@ -3,6 +3,7 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { CustomCSSProperties } from 'src/types/common';
 import renderDescription from 'src/utils/common';
 import Greeting from '../3D/Greeting';
 import Laying from '../3D/Laying';
@@ -71,7 +72,11 @@ const AboutMe = ({
       variants={containerVariants}
       className="about"
       id="about">
-      <h2 className="numbered-heading">About Me</h2>
+      <h2
+        className="numbered-heading"
+        style={{ '--section-number': 1 } as CustomCSSProperties}>
+        About Me
+      </h2>
       <section className="about_container">
         <motion.section
           className="about_world-map"

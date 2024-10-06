@@ -2,7 +2,8 @@
 
 import { motion, useAnimation, useInView } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { CustomCSSProperties } from 'src/types/common';
 
 type Stack = {
   name: string;
@@ -27,6 +28,39 @@ const Stack: React.FC<Props> = ({ stacks, otherStacks }) => {
   const containerInView = useInView(containerRef, { once: false, amount: 0.1 });
   const skillsInView = useInView(skillsRef, { once: false, amount: 0.1 });
   const techInView = useInView(techRef, { once: false, amount: 0.1 });
+
+  const [percentages, setPercentages] = useState<number[]>(stacks.map(() => 0));
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (skillsInView && !hasAnimated) {
+      setHasAnimated(true);
+      setPercentages(stacks.map(() => 0)); // Reset to 0 before starting animation
+
+      stacks.forEach((stack, index) => {
+        const targetPercentage = getFrequencyPercentage(stack.frequency);
+        const duration = 2000; // 2 seconds
+        const steps = 60; // Update 60 times per second
+        const increment = targetPercentage / steps;
+        let currentPercentage = 0;
+
+        const timer = setInterval(() => {
+          currentPercentage += increment;
+          if (currentPercentage >= targetPercentage) {
+            clearInterval(timer);
+            currentPercentage = targetPercentage;
+          }
+          setPercentages(prev => {
+            const newPercentages = [...prev];
+            newPercentages[index] = currentPercentage;
+            return newPercentages;
+          });
+        }, duration / steps);
+      });
+    } else if (!skillsInView) {
+      setHasAnimated(false); // Reset when out of view
+    }
+  }, [skillsInView, stacks]);
 
   useEffect(() => {
     if (containerInView) {
@@ -134,7 +168,11 @@ const Stack: React.FC<Props> = ({ stacks, otherStacks }) => {
       animate={containerControls}
       variants={containerVariants}
       className="skills">
-      <h2 className="numbered-heading">Stack</h2>
+      <h2
+        className="numbered-heading"
+        style={{ '--section-number': 2 } as CustomCSSProperties}>
+        Stack
+      </h2>
       <motion.section
         ref={skillsRef}
         variants={skillsVariants}
@@ -165,7 +203,7 @@ const Stack: React.FC<Props> = ({ stacks, otherStacks }) => {
                 </div>
                 <div>
                   <span className="skills_frequency-percentage">
-                    {getFrequencyPercentage(stack.frequency).toFixed(0)}%
+                    {percentages[index].toFixed(0)}%
                   </span>
                 </div>
               </div>
@@ -173,9 +211,9 @@ const Stack: React.FC<Props> = ({ stacks, otherStacks }) => {
                 <motion.section
                   initial={{ width: 0 }}
                   animate={{
-                    width: `${getFrequencyPercentage(stack.frequency)}%`,
+                    width: `${percentages[index]}%`,
                   }}
-                  transition={{ duration: 1.2 }}
+                  transition={{ duration: 2 }}
                   className="skills_bar-fill"></motion.section>
               </div>
             </div>
