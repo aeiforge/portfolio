@@ -24,7 +24,7 @@ const Banner: React.FC<BannerProps> = ({
   return (
     <section className="banner">
       <section className="banner_office">
-        <Office props={{ position: [-0.5, 0.8, 1], rotation: [0, Math.PI, 0], scale: 1 }} modelUrl={modelUrl} />
+        <Office props={{ position: [-0.5, 0.8, 1], rotation: [0, Math.PI, 0], scale: 1.1 }} modelUrl={modelUrl} />
       </section>
       <section className="banner_intro">
         <span className="banner_greeting">Hi, my name is</span>

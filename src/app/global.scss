@@ -224,6 +224,10 @@ body {
 .banner {
   @apply flex h-screen w-full flex-col-reverse justify-center bg-primary-dark;
 
+  @screen lg {
+    @apply flex-row gap-2;
+  }
+
   &_office,
   &_intro {
     @apply w-full;
@@ -231,20 +235,16 @@ body {
 
   &_office {
     @apply h-1/2;
+
+    @screen lg {
+      @apply h-full w-1/2;
+    }
   }
 
   &_intro {
     @apply pt-20;
-  }
 
-  @screen md {
-    @apply flex-row;
-
-    &_office {
-      @apply h-full w-1/2;
-    }
-
-    &_intro {
+    @screen lg {
       @apply flex w-1/2 flex-col justify-center;
     }
   }
@@ -255,12 +255,12 @@ body {
   }
 
   &_name {
-    @apply font-calibre text-[clamp(40px,8vw,80px)] font-semibold text-lightest-slate;
+    @apply font-calibre text-[clamp(40px,8vw,60px)] font-semibold text-lightest-slate;
     line-height: 1.1;
   }
 
   &_sologan {
-    @apply mt-2 font-calibre text-[clamp(40px,8vw,80px)] font-semibold text-slate;
+    @apply mt-2 font-calibre text-[clamp(40px,8vw,60px)] font-semibold text-slate;
     line-height: 0.9;
   }
 
@@ -271,7 +271,7 @@ body {
   &_info {
     @apply flex flex-col gap-4;
 
-    @screen md {
+    @screen xl {
       @apply flex-row gap-8;
     }
   }
