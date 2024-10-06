@@ -2,7 +2,7 @@
 
 import { motion, useAnimation, useInView } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import renderDescription from 'src/utils/common';
 import Greeting from '../3D/Greeting';
 import Laying from '../3D/Laying';
@@ -41,32 +41,26 @@ const AboutMe = ({
     }
   }, [containerControls, containerInView]);
 
-  const [showModel, setShowModel] = useState(false);
-
-  useEffect(() => {
-    if (containerInView) {
-      const timer = setTimeout(() => setShowModel(true), 100);
-      return () => clearTimeout(timer);
-    } else {
-      setShowModel(false);
-    }
-  }, [containerInView]);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.3, delayChildren: 0.1, staggerChildren: 0.2 },
+      transition: { duration: 0.3, delayChildren: 0.1, staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { x: 20, opacity: 0 },
     visible: {
-      y: 0,
+      x: 0,
       opacity: 1,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.3 },
     },
+  };
+
+  const fadeInVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
   };
 
   return (
@@ -79,26 +73,32 @@ const AboutMe = ({
       id="about">
       <h2 className="numbered-heading">About Me</h2>
       <section className="about_container">
-        <motion.section className="about_world-map" variants={itemVariants}>
+        <motion.section
+          className="about_world-map"
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible">
           <WorldMap />
         </motion.section>
 
-        <motion.section className="about_technologies" variants={itemVariants}>
-          <section className="key-technologies">
+        <section className="about_technologies">
+          <motion.section className="key-technologies" variants={itemVariants}>
             {keyTechnologies.map((tech, index) => (
               <div key={index} className="key-technologies_icon">
                 <Image src={tech.icon} alt={tech.name} width={40} height={40} />
                 <span className="key-technologies_icon-name">{tech.name}</span>
               </div>
             ))}
-          </section>
-          <p className="p-6" key={0}>
+          </motion.section>
+          <motion.p className="p-6" key={0} variants={itemVariants}>
             {renderDescription(keyTechnologiesDescription, linkProps)}
-          </p>
-        </motion.section>
+          </motion.p>
+        </section>
 
-        <motion.section className="about_technologies" variants={itemVariants}>
-          <section className="future-technologies">
+        <section className="about_technologies">
+          <motion.section
+            className="future-technologies"
+            variants={itemVariants}>
             {futureTechnologies.map((tech, index) => (
               <div key={index} className="future-technologies_icon">
                 <Image src={tech.icon} alt={tech.name} width={40} height={40} />
@@ -107,39 +107,39 @@ const AboutMe = ({
                 </span>
               </div>
             ))}
-          </section>
-          <p className="p-6" key={0}>
+          </motion.section>
+          <motion.p className="p-6" key={0} variants={itemVariants}>
             {renderDescription(futureTechnologiesDescription, linkProps)}
-          </p>
-        </motion.section>
+          </motion.p>
+        </section>
 
-        <motion.section className="about_greeting" variants={itemVariants}>
+        <section className="about_greeting">
           <section className="about_greeting_model">
-            {showModel && <Greeting position={[0, 0, 0]} modelUrl={modelUrl} />}
+            {<Greeting position={[0, 0, 0]} modelUrl={modelUrl} />}
           </section>
           {description.map((paragraph, index) => (
-            <p className="p-6" key={index}>
+            <motion.p className="p-6" key={index} variants={itemVariants}>
               {renderDescription(paragraph, linkProps)}
-            </p>
+            </motion.p>
           ))}
-        </motion.section>
+        </section>
 
-        <motion.section className="about_expectations" variants={itemVariants}>
+        <section className="about_expectations">
           <section className="about_expectations_model">
-            {showModel && (
+            {
               <Laying
                 position={[-0.8, 2, 0.2]}
                 scale={2.5}
                 modelUrl={modelUrl}
               />
-            )}
+            }
           </section>
           {expectations.map((paragraph, index) => (
-            <p className="p-6" key={index}>
+            <motion.p className="p-6" key={index} variants={itemVariants}>
               {renderDescription(paragraph, linkProps)}
-            </p>
+            </motion.p>
           ))}
-        </motion.section>
+        </section>
       </section>
     </motion.section>
   );

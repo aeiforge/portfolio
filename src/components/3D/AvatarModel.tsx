@@ -4,6 +4,7 @@ import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
 import { useGraph } from '@react-three/fiber';
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { AnimationClip } from 'three';
 import { GLTF, SkeletonUtils } from 'three-stdlib';
 
 type GLTFAction = {
@@ -47,6 +48,17 @@ type AvatarModelProps = JSX.IntrinsicElements['group'] & {
   modelUrl: string;
 };
 
+function retargetClip(
+  clip: AnimationClip,
+  targetNames: string[]
+): AnimationClip {
+  const newClip = clip.clone();
+  newClip.tracks = newClip.tracks.filter(track =>
+    targetNames.some(name => track.name.startsWith(name))
+  );
+  return newClip;
+}
+
 export const AvatarModel: React.FC<AvatarModelProps> = ({
   animation,
   modelUrl,
@@ -78,34 +90,45 @@ export const AvatarModel: React.FC<AvatarModelProps> = ({
   greetingAnimation[0].name = 'greeting';
   layingAnimation[0].name = 'laying';
 
-  const { actions } = useAnimations(
-    [
+  const retargetedAnimations = React.useMemo(() => {
+    const targetNames = Object.keys(nodes);
+    return [
       typingAnimation[0],
       playingPianoAnimation[0],
       greetingAnimation[0],
       layingAnimation[0],
-    ],
-    group
-  );
+    ].map(clip => retargetClip(clip, targetNames));
+  }, [
+    nodes,
+    typingAnimation,
+    playingPianoAnimation,
+    greetingAnimation,
+    layingAnimation,
+  ]);
+
+  const { actions } = useAnimations(retargetedAnimations, group);
 
   useEffect(() => {
+    // Stop all animations
+    Object.values(actions).forEach(action => action?.stop());
+
+    // Play the selected animation
     switch (animation) {
       case 'typing':
-        actions['typing']?.reset()?.play();
+        actions['typing']?.reset().play();
         break;
       case 'playingPiano':
-        actions['playingPiano']?.reset()?.play();
+        actions['playingPiano']?.reset().play();
         break;
       case 'greeting':
-        actions['greeting']?.reset()?.play();
+        actions['greeting']?.reset().play();
         break;
       case 'laying':
-        actions['laying']?.reset()?.play();
+        actions['laying']?.reset().play();
         break;
-      default:
-        break;
+      // No default case needed as we've stopped all animations already
     }
-  }, [animation]);
+  }, [animation, actions]);
 
   return (
     <group
