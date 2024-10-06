@@ -13,9 +13,9 @@ type AboutMeProps = {
   description: string[];
   expectations: string[];
   keyTechnologies: { name: string; icon: string }[];
-  keyTechnologiesDescription: string[];
+  keyTechnologiesDescription: string;
   futureTechnologies: { name: string; icon: string }[];
-  futureTechnologiesDescription: string[];
+  futureTechnologiesDescription: string;
   linkProps: Record<string, { href: string }>;
 };
 
@@ -75,73 +75,43 @@ const AboutMe = ({
       initial="hidden"
       animate={containerControls}
       variants={containerVariants}
-      className="mx-auto my-20 h-full max-w-[1000px]"
+      className="about"
       id="about">
       <h2 className="numbered-heading">About Me</h2>
-      <div className="grid h-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6">
-        <motion.div
-          className="col-span-1 xl:row-span-2"
-          variants={itemVariants}>
-          <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
-            <div className="flex h-full w-full justify-center">
-              <WorldMap />
-            </div>
-          </div>
-        </motion.div>
+      <section className="about_container">
+        <motion.section className="about_world-map" variants={itemVariants}>
+          <WorldMap />
+        </motion.section>
 
-        <motion.div
-          className="col-span-1 xl:row-span-3"
-          variants={itemVariants}>
-          <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
-            <section className="h-3/4 w-full">
-              <div className="grid grid-cols-3 gap-4 p-6">
-                {keyTechnologies.map((tech, index) => (
-                  <div key={index} className="flex flex-col items-center">
-                    <Image
-                      src={tech.icon}
-                      alt={tech.name}
-                      width={40}
-                      height={40}
-                    />
-                    <span className="mt-2 text-sm">{tech.name}</span>
-                  </div>
-                ))}
+        <motion.section className="about_technologies" variants={itemVariants}>
+          <section className="key-technologies">
+            {keyTechnologies.map((tech, index) => (
+              <div key={index} className="key-technologies_icon">
+                <Image src={tech.icon} alt={tech.name} width={40} height={40} />
+                <span className="key-technologies_icon-name">{tech.name}</span>
               </div>
-            </section>
-            {keyTechnologiesDescription.map((paragraph, index) => (
-              <p className="p-6" key={index}>
-                {renderDescription(paragraph, linkProps)}
-              </p>
             ))}
-          </div>
-        </motion.div>
+          </section>
+          <p className="p-6" key={0}>
+            {renderDescription(keyTechnologiesDescription, linkProps)}
+          </p>
+        </motion.section>
 
-        <motion.div
-          className="col-span-1 xl:row-span-3"
-          variants={itemVariants}>
-          <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
-            <section className="h-3/4 w-full">
-              <div className="grid grid-cols-3 gap-4 p-6">
-                {futureTechnologies.map((tech, index) => (
-                  <div key={index} className="flex flex-col items-center">
-                    <Image
-                      src={tech.icon}
-                      alt={tech.name}
-                      width={40}
-                      height={40}
-                    />
-                    <span className="mt-2 text-sm">{tech.name}</span>
-                  </div>
-                ))}
+        <motion.section className="about_technologies" variants={itemVariants}>
+          <section className="future-technologies">
+            {futureTechnologies.map((tech, index) => (
+              <div key={index} className="future-technologies_icon">
+                <Image src={tech.icon} alt={tech.name} width={40} height={40} />
+                <span className="future-technologies_icon-name">
+                  {tech.name}
+                </span>
               </div>
-            </section>
-            {futureTechnologiesDescription.map((paragraph, index) => (
-              <p className="p-6" key={index}>
-                {renderDescription(paragraph, linkProps)}
-              </p>
             ))}
-          </div>
-        </motion.div>
+          </section>
+          <p className="p-6" key={0}>
+            {renderDescription(futureTechnologiesDescription, linkProps)}
+          </p>
+        </motion.section>
 
         <motion.div
           className="xl:col-span-1 xl:row-span-4"
@@ -180,7 +150,7 @@ const AboutMe = ({
             ))}
           </div>
         </motion.div>
-      </div>
+      </section>
     </motion.section>
   );
 };

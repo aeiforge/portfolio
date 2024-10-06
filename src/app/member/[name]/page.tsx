@@ -46,9 +46,9 @@ interface Member {
     mainStackList: MainStack[];
     otherStackList: string[];
     keyTechnologies: { name: string; icon: string }[];
-    keyTechnologiesDescription: string[];
+    keyTechnologiesDescription: string;
     futureTechnologies: { name: string; icon: string }[];
-    futureTechnologiesDescription: string[];
+    futureTechnologiesDescription: string;
   };
   modelUrl: string;
   expectations: string[];
@@ -152,17 +152,15 @@ const members: Record<string, Member> = {
         { name: 'Docker', icon: '/icons/docker.svg' },
         { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
       ],
-      keyTechnologiesDescription: [
-        'I have a strong foundation in JavaScript and TypeScript, and I am proficient in Angular, React, and Node.js. I have experience with backend development using Nestjs'
-      ],
+      keyTechnologiesDescription:
+        'I have a strong foundation in JavaScript and TypeScript, and I am proficient in Angular, React, and Node.js. I have experience with backend development using Nestjs',
       futureTechnologies: [
         { name: 'Go', icon: '/icons/go.svg' },
         { name: 'Remix', icon: '/icons/remix.svg' },
         { name: 'Three.js', icon: '/icons/threedotjs.svg' },
       ],
-      futureTechnologiesDescription: [
+      futureTechnologiesDescription:
         'I am currently learning about AI and machine learning, and I am interested in the next few months.',
-      ],
     },
     modelUrl: '/models/fixed/vinh.glb',
     expectations: [
@@ -174,7 +172,7 @@ const members: Record<string, Member> = {
     role: 'Software Engineer',
     slogan: 'Software Engineer',
     description: [
-      'Hi, I\'m  {highlight}Minh{/highlight}. I have nearly 5 years of experience as a {highlight}Software Engineer{/highlight} with skills across CRM, finance, blockchain, healthcare, and oil & gas. {link}Learn more!{/link}',
+      "Hi, I'm  {highlight}Minh{/highlight}. I have nearly 5 years of experience as a {highlight}Software Engineer{/highlight} with skills across CRM, finance, blockchain, healthcare, and oil & gas. {link}Learn more!{/link}",
     ],
     shortIntro:
       "I'm a fullstack developer with a passion for building web/mobile applications.",
@@ -266,17 +264,15 @@ const members: Record<string, Member> = {
         { name: 'Docker', icon: '/icons/docker.svg' },
         { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
       ],
-      keyTechnologiesDescription: [
-        'These are the key tech stacks I\'ve {highlight}frequently used{/highlight} during project development. {link}Learn more!{/link}',
-      ],
+      keyTechnologiesDescription:
+        "These are the key tech stacks I've {highlight}frequently used{/highlight} during project development. {link}Learn more!{/link}",
       futureTechnologies: [
         { name: 'Go', icon: '/icons/go.svg' },
         { name: 'Remix', icon: '/icons/remix.svg' },
         { name: 'Three.js', icon: '/icons/threedotjs.svg' },
       ],
-      futureTechnologiesDescription: [
-        'These are the key tech stacks I\'m {highlight}currently learning{/highlight} and {highlight}interested in{/highlight} the next few months.',
-      ],
+      futureTechnologiesDescription:
+        "These are the key tech stacks I'm {highlight}currently learning{/highlight} and {highlight}interested in{/highlight} the next few months.",
     },
     modelUrl: '/models/fixed/minh.glb',
     expectations: [
@@ -405,8 +401,12 @@ export default function MemberPage({ params }: { params: { name: string } }) {
           expectations={member.expectations}
           futureTechnologies={member.techstack.futureTechnologies}
           linkProps={linkProps}
-          keyTechnologiesDescription={member.techstack.keyTechnologiesDescription}
-          futureTechnologiesDescription={member.techstack.futureTechnologiesDescription}
+          keyTechnologiesDescription={
+            member.techstack.keyTechnologiesDescription
+          }
+          futureTechnologiesDescription={
+            member.techstack.futureTechnologiesDescription
+          }
         />
         <Stack
           stacks={member.techstack.mainStackList}

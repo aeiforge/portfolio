@@ -350,103 +350,34 @@ body {
 
 /* Start About */
 .about {
-  @apply mx-auto max-w-[1000px] py-16 text-slate;
+  @apply mx-auto my-20 h-full max-w-[1000px];
 
-  &_inner {
-    @apply grid items-center gap-12;
-
-    @screen md {
-      @apply grid-cols-[3fr,2fr] items-start gap-0;
-    }
+  &_container {
+    @apply grid h-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6;
   }
 
-  &_content {
-    p {
-      @apply mb-4;
-    }
+  .about_world-map {
+    @apply col-span-1 flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:row-span-2;
   }
 
-  &_skills {
-    @apply mt-5 grid grid-cols-[repeat(2,minmax(140px,200px))] gap-x-2 gap-y-1 overflow-hidden;
+  .about_technologies {
+    @apply col-span-1 flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:row-span-3;
 
-    li {
-      @apply relative pl-5;
+    .key-technologies,
+    .future-technologies {
+      @apply grid h-3/4 w-full grid-cols-3 gap-4 p-6;
 
-      &::before {
-        @apply absolute left-0;
-        content: '▹';
-      }
-    }
-  }
+      &_icon {
+        @apply flex flex-col items-center;
 
-  &_image {
-    @apply relative mx-auto max-w-[300px];
-
-    @screen md {
-      @apply mr-5 max-w-[300px] justify-self-end;
-    }
-
-    &_wrapper {
-      @apply relative block;
-
-      &::before {
-        @apply absolute -bottom-5 -right-4 z-[-1] block h-full w-[calc(100%+2rem)] border-2 border-secondary-dark;
-        content: '';
-
-        @screen md {
-          @apply -right-5 -top-5 w-full;
-        }
-      }
-
-      &::after {
-        content: '';
-        @apply absolute -bottom-5 -left-5 z-[-1] hidden h-full w-full bg-secondary-dark;
-
-        @screen lg {
-          @apply block;
-        }
-      }
-
-      &:hover::before {
-        @screen md {
-          @apply -right-4 -top-4;
-        }
-      }
-
-      &:hover::after {
-        @screen md {
-          @apply -bottom-4 -left-4;
+        &-name {
+          @apply mt-2 text-sm;
         }
       }
     }
-
-    img {
-      @apply rounded;
-      filter: grayscale(50%) brightness(70%);
-      transition: filter 0.3s ease;
-    }
-
-    &:hover img {
-      filter: none;
-    }
-  }
-
-  .show-more-btn {
-    background: none;
-    border: none;
-    color: #64ffda;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-    padding: 5px 10px;
-    text-decoration: underline;
-  }
-
-  .show-more-btn:hover {
-    color: #45e0bc;
   }
 }
-/* End About */
+/* End About*/
 
 /* Start Skills */
 .skills {
