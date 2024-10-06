@@ -113,43 +113,33 @@ const AboutMe = ({
           </p>
         </motion.section>
 
-        <motion.div
-          className="xl:col-span-1 xl:row-span-4"
-          variants={itemVariants}>
-          <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
-            <section className="h-3/4 w-full">
-              {showModel && (
-                <Greeting position={[0, 0, 0]} modelUrl={modelUrl} />
-              )}
-            </section>
-            {description.map((paragraph, index) => (
-              <p className="p-6" key={index}>
-                {renderDescription(paragraph, linkProps)}
-              </p>
-            ))}
-          </div>
-        </motion.div>
+        <motion.section className="about_greeting" variants={itemVariants}>
+          <section className="about_greeting_model">
+            {showModel && <Greeting position={[0, 0, 0]} modelUrl={modelUrl} />}
+          </section>
+          {description.map((paragraph, index) => (
+            <p className="p-6" key={index}>
+              {renderDescription(paragraph, linkProps)}
+            </p>
+          ))}
+        </motion.section>
 
-        <motion.div
-          className="xl:col-span-2 xl:row-span-3"
-          variants={itemVariants}>
-          <div className="flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark">
-            <section className="h-3/4 w-full">
-              {showModel && (
-                <Laying
-                  position={[-0.8, 2, 0.2]}
-                  scale={2.5}
-                  modelUrl={modelUrl}
-                />
-              )}
-            </section>
-            {expectations.map((paragraph, index) => (
-              <p className="p-6" key={index}>
-                {renderDescription(paragraph, linkProps)}
-              </p>
-            ))}
-          </div>
-        </motion.div>
+        <motion.section className="about_expectations" variants={itemVariants}>
+          <section className="about_expectations_model">
+            {showModel && (
+              <Laying
+                position={[-0.8, 2, 0.2]}
+                scale={2.5}
+                modelUrl={modelUrl}
+              />
+            )}
+          </section>
+          {expectations.map((paragraph, index) => (
+            <p className="p-6" key={index}>
+              {renderDescription(paragraph, linkProps)}
+            </p>
+          ))}
+        </motion.section>
       </section>
     </motion.section>
   );

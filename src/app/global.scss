@@ -356,11 +356,11 @@ body {
     @apply grid h-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6;
   }
 
-  .about_world-map {
+  &_world-map {
     @apply col-span-1 flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:row-span-2;
   }
 
-  .about_technologies {
+  &_technologies {
     @apply col-span-1 flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:row-span-3;
 
     .key-technologies,
@@ -374,6 +374,22 @@ body {
           @apply mt-2 text-sm;
         }
       }
+    }
+  }
+
+  &_greeting {
+    @apply flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:col-span-1 xl:row-span-4;
+
+    &_model {
+      @apply h-3/4 w-full;
+    }
+  }
+
+  &_expectations {
+    @apply flex h-full w-full flex-col justify-between rounded-lg border border-secondary-dark xl:col-span-2 xl:row-span-3;
+
+    &_model {
+      @apply h-3/4 w-full;
     }
   }
 }
