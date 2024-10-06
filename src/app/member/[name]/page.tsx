@@ -23,6 +23,17 @@ interface MainStack {
   frequency: number;
 }
 
+interface Job {
+  companyLogo: string;
+  companyName: string;
+  position: string;
+  duration: string;
+  description: string[];
+  link: string;
+  logoWidth: number;
+  logoHeight: number;
+}
+
 interface Member {
   fullName: string;
   role: string;
@@ -52,6 +63,7 @@ interface Member {
   };
   modelUrl: string;
   expectations: string[];
+  jobs: Job[];
 }
 
 const members: Record<string, Member> = {
@@ -184,71 +196,95 @@ const members: Record<string, Member> = {
     expectations: [
       'I am currently here looking for a {highlight}second job as a freelancer{/highlight}. Although based in Ho Chi Minh City, Vietnam, I am very flexible with {highlight}time zone communications and locations{/highlight}. Please feel free to {link}contact me{/link} if you are looking for someone who can meet your job requirements.',
     ],
+    jobs: [
+      {
+        companyLogo: '/images/halliburton.png',
+        companyName: 'Halliburton',
+        position: 'Senior Software Engineering',
+        duration: '09/2023 - Present',
+        description: [
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+          'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+        ],
+        link: 'https://www.halliburton.com/',
+        logoWidth: 150,
+        logoHeight: 90,
+      },
+      {
+        companyLogo: '/icons/sts.svg',
+        companyName: 'Saigon Technology Solutions',
+        position: 'Senior Software Engineering',
+        duration: '07/2022 - 08/2023',
+        description: [
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+          'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+        ],
+        link: 'https://saigontechnology.com/',
+        logoWidth: 150,
+        logoHeight: 90,
+      },
+      {
+        companyLogo: '/icons/upwork.svg',
+        companyName: 'Riet Circles',
+        position: 'Senior Software Engineering',
+        duration: '07/2022 - 07/2024',
+        description: [
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+          'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+        ],
+        link: 'https://reitcircles.com/',
+        logoWidth: 100,
+        logoHeight: 100,
+      },
+      {
+        companyLogo: '/icons/upwork.svg',
+        companyName: 'Wirely DTS',
+        position: 'Senior Software Engineering',
+        duration: '03/2022 - 07/2022',
+        description: [
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+          'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+        ],
+        link: 'https://wirely.com.au/',
+        logoWidth: 100,
+        logoHeight: 100,
+      },
+      {
+        companyLogo: '/icons/upwork.svg',
+        companyName: 'BlueGhost',
+        position: 'Middle Software Engineering',
+        duration: '8/2022 - Present',
+        description: [
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+          'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+        ],
+        link: '#',
+        logoWidth: 100,
+        logoHeight: 100,
+      },
+      {
+        companyLogo: '/images/nec-1.png',
+        companyName: 'NEC Vietnam',
+        position: 'Junior Software Engineering',
+        duration: '01/2021 - 04/2022',
+        description: [
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+          'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
+          'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
+        ],
+        link: '#',
+        logoWidth: 100,
+        logoHeight: 100,
+      },
+    ]
   },
 };
 
-const jobs = [
-  {
-    companyLogo: '/icons/upwork.svg',
-    companyName: 'Upwork',
-    position: 'Senior Software Engineering',
-    duration: '8/2022 - Present',
-    description: [
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-    ],
-    link: '#',
-  },
-  {
-    companyLogo: '/icons/upwork.svg',
-    companyName: 'Upwork',
-    position: 'Senior Software Engineering',
-    duration: '8/2022 - Present',
-    description: [
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-    ],
-    link: '#',
-  },
-  {
-    companyLogo: '/icons/upwork.svg',
-    companyName: 'Upwork',
-    position: 'Senior Software Engineering',
-    duration: '8/2022 - Present',
-    description: [
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-    ],
-    link: '#',
-  },
-  {
-    companyLogo: '/icons/upwork.svg',
-    companyName: 'Upwork',
-    position: 'Senior Software Engineering',
-    duration: '8/2022 - Present',
-    description: [
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-    ],
-    link: '#',
-  },
-  {
-    companyLogo: '/icons/upwork.svg',
-    companyName: 'Upwork',
-    position: 'Senior Software Engineering',
-    duration: '8/2022 - Present',
-    description: [
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-      'Id id lectus odio dictum elementum id quis nunc nunc. Pellentesque imperdiet morbi adipiscing orci. Placerat amet ac augue viverra.',
-      'Lorem ipsum dolor sit amet consectetur. Massa in nec arcu volutpat purus porttitor urna feugiat. Pellentesque elementum placerat malesuada in amet ipsum porta.',
-    ],
-    link: '#',
-  },
-];
 
 export default function MemberPage({ params }: { params: { name: string } }) {
   const memberName = params.name.toLowerCase();
@@ -318,7 +354,7 @@ export default function MemberPage({ params }: { params: { name: string } }) {
           stacks={member.techstack.mainStackList}
           otherStacks={member.techstack.otherStackList}
         />
-        <WorkExperience jobs={jobs} />
+        <WorkExperience jobs={member.jobs} />
         <Footer />
       </main>
     </>

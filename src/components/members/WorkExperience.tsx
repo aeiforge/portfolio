@@ -12,6 +12,8 @@ interface Job {
   duration: string;
   description: string[];
   link: string;
+  logoWidth: number;
+  logoHeight: number;
 }
 
 interface WorkExperienceProps {
@@ -76,9 +78,10 @@ const WorkExperienceItem: React.FC<{ job: Job; index: number }> = ({
           <Image
             src={job.companyLogo}
             alt={job.companyName}
-            width={100}
-            height={30}
+            width={job.logoWidth}
+            height={job.logoHeight}
             className="work-experience_logo"
+            style={{ width: job.logoWidth, height: job.logoHeight }}
           />
           <h3 className="work-experience_company">{job.companyName}</h3>
           <p className="work-experience_duration">{job.duration}</p>

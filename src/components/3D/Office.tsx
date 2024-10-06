@@ -19,10 +19,10 @@ const Office = ({
       <ambientLight intensity={0.1} />
       <OrbitControls
         ref={controlsRef}
-        enablePan={false}
-        enableRotate={false}
-        minDistance={2}
-        maxDistance={10}
+        // enablePan={false}
+        // enableRotate={false}
+        // minDistance={2}
+        // maxDistance={10}
       />
       <Suspense fallback={<CanvasLoader />}>
         <group {...props}>

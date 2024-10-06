@@ -9,7 +9,7 @@ Title: Modern Marble Work Desk With White Apple Theme
 
 'use client';
 
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, useVideoTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { GLTF } from 'three-stdlib';
 
@@ -329,6 +329,15 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
     '/models/fixed/work-space.glb'
   ) as GLTFResult;
 
+  const macScreen = useVideoTexture('/videos/minh_macbook_screen.mp4');
+
+  const macScreenMaterial = new THREE.MeshBasicMaterial({ 
+    map: macScreen,
+    side: THREE.DoubleSide
+  });
+
+  macScreen.flipY = true;
+
   return (
     <group position={[0.02, -1.15, 0.25]}>
       <group {...props} dispose={null}>
@@ -426,7 +435,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
             </group>
             {/* End Chair */}
             {/* Start Samsung */}
-            <group
+            {/* <group
               position={[33.339, 85.826, 34.832]}
               rotation={[Math.PI / 2, 0, Math.PI]}
               scale={2.685}>
@@ -567,7 +576,7 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
                 material={materials.Cam_Body}
                 position={[0.591, -4.405, 0.112]}
               />
-            </group>
+            </group> */}
             {/* End Samsung */}
             <group
               position={[41.103, 85.916, 42.108]}
@@ -1360,13 +1369,15 @@ export default function WorkSpaceModel(props: JSX.IntrinsicElements['group']) {
               rotation={[-1.809, 0, -Math.PI]}
               scale={1.207}
             />
+            {/* Start Macbook Screen */}
             <mesh
               geometry={nodes.SDFncRVROIaGmdP_Material006_0.geometry}
-              material={materials.RWIxOmVjlQCyowf_1}
-              position={[78.28, 85.801, 78.067]}
-              rotation={[-1.809, 0, -Math.PI]}
+              material={macScreenMaterial}
+              position={[42.295, 85.801, 79]}
+              rotation={[-1.12, 0, 0]}
               scale={1.207}
             />
+            {/* End Macbook Screen */}
             <mesh
               geometry={nodes.SDXaYLHOunwCLHZ_CUqnbzGvHvsjfjx_0.geometry}
               material={materials.RWIxOmVjlQCyowf_0}
