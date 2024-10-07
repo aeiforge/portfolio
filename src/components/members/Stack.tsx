@@ -60,6 +60,7 @@ const Stack: React.FC<Props> = ({ stacks, otherStacks }) => {
     } else if (!skillsInView) {
       setHasAnimated(false); // Reset when out of view
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skillsInView, stacks]);
 
   useEffect(() => {

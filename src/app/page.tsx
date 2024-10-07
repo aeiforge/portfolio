@@ -1,7 +1,3 @@
-import dynamic from "next/dynamic";
-
-const Office = dynamic(() => import("src/components/3D/Office"), { ssr: false });
-
 export default function Index() {
   /*
    * Replace the elements below with your own.
@@ -10,8 +6,7 @@ export default function Index() {
    */
   return (
     <>
-      <section className="w-screen h-screen">
-      </section>
+      <section className="h-screen w-screen"></section>
     </>
   );
 }
