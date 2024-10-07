@@ -11,7 +11,6 @@ export default function Index() {
   return (
     <>
       <section className="w-screen h-screen">
-        <Office />
       </section>
     </>
   );
