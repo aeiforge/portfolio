@@ -245,7 +245,7 @@ body {
     @apply pt-20;
 
     @screen lg {
-      @apply flex w-1/2 flex-col justify-center;
+      @apply flex w-fit flex-col justify-center;
     }
   }
 
